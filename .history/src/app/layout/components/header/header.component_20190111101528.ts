@@ -37,7 +37,6 @@ export class HeaderComponent implements OnInit {
 
         if (localStorage.getItem('firstname') != null) {
             this.firstName = localStorage.getItem('firstname');
-            this.name = localStorage.getItem('name');
 
         } else {
             location.replace('/login');

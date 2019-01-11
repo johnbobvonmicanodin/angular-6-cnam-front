@@ -6,11 +6,11 @@
             <form role="form">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" name="email" [(ngModel)]="email" class="form-control input-underline input-lg" placeholder="{{ 'Email' | translate }}">
+                        <input type="text" [(ngModel)]="email" class="form-control input-underline input-lg" id="mail" placeholder="{{ 'Email' | translate }}">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" name="password" [(ngModel)]="password" class="form-control input-underline input-lg" placeholder="{{ 'Password' | translate }}">
+                        <input type="password" [(ngModel)]="password" class="form-control input-underline input-lg" id="password" placeholder="{{ 'Password' | translate }}">
                     </div>
                 </div>
                 <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>

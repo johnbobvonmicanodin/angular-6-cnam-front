@@ -39,18 +39,10 @@ export class LoginComponent implements OnInit {
 
         this.userService.login(this.login).subscribe(data => {
 
-            if (data.firstName != null) {
-                // console.log(data);
+            if (data[0].firstname != null) {
                 localStorage.setItem('isLoggedin', 'true');
-                localStorage.setItem('currentUser', data);
-                localStorage.setItem('firstname', data.firstName);
-                localStorage.setItem('name', data.name);
-                localStorage.setItem('email', data.email);
-                localStorage.setItem('isSeller', data.isSeller);
-                localStorage.setItem('id', data.id);
-                location.replace('/dashboard');
             } else {
-                console.log('bad log');
+
             }
         });
     }

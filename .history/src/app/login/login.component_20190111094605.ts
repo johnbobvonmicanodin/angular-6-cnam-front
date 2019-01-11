@@ -30,28 +30,19 @@ export class LoginComponent implements OnInit {
             this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
     }
 
-    ngOnInit() {    }
-
-    onLoggedin() {
-
-        this.login.mail = this.email;
-        this.login.password = this.password;
+    ngOnInit() {
+        this.login.mail = 'test@test.fr';
+        this.login.password = '123456';
 
         this.userService.login(this.login).subscribe(data => {
-
-            if (data.firstName != null) {
-                // console.log(data);
-                localStorage.setItem('isLoggedin', 'true');
-                localStorage.setItem('currentUser', data);
-                localStorage.setItem('firstname', data.firstName);
-                localStorage.setItem('name', data.name);
-                localStorage.setItem('email', data.email);
-                localStorage.setItem('isSeller', data.isSeller);
-                localStorage.setItem('id', data.id);
-                location.replace('/dashboard');
-            } else {
-                console.log('bad log');
-            }
+            console.log(data);
         });
+    }
+
+    onLoggedin() {
+        localStorage.setItem('isLoggedin', 'true');
+
+        console.log(this.email);
+        console.log(this.password);
     }
 }

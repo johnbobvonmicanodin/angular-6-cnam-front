@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
     currentUser;
     name = '';
-    firstName = '';
+    fistName = '';
 
     constructor(private translate: TranslateService, public router: Router) {
 
@@ -35,12 +35,10 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.pushRightClass = 'push-right';
 
-        if (localStorage.getItem('firstname') != null) {
-            this.firstName = localStorage.getItem('firstname');
-            this.name = localStorage.getItem('name');
+        this.currentUser = localStorage.getItem('firstname');
 
-        } else {
-            location.replace('/login');
+        if (this.currentUser !== undefined) {
+            console.log(this.currentUser);
         }
     }
 

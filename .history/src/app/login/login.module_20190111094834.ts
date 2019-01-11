@@ -10,7 +10,7 @@ import { LoginComponent } from './login.component';
     imports: [
         CommonModule,
         TranslateModule,
-        FormsModule,
+        FormsModule
         LoginRoutingModule],
     declarations: [LoginComponent]
 })

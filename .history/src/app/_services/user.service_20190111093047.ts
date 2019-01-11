@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Login } from '../models/login';
-import { User } from '../models/user';
+import { User } from '../models/login';
 
 
 @Injectable({
