@@ -13,7 +13,7 @@ import { Login } from '../models/login';
 })
 export class LoginComponent implements OnInit {
 
-    login = new Login();
+    login: Login;
 
     constructor(
         private translate: TranslateService,
