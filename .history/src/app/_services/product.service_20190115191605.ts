@@ -12,7 +12,7 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  private _apiURL = 'https://localhost:44380/api/users';
+  private _apiURL = 'https://localhost:44380/api/products';
 
   constructor(public http: Http) {
 
@@ -44,20 +44,7 @@ export class UserService {
 
   public deleteUser(idUser) {
 
-    return this.http.delete(`${this._apiURL}/delete`, idUser)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
-  }
-
-  public modifyUser(userbefore: User, userafter: User) {
-    const json = {'userbefore': userbefore, 'userafter': userafter};
-
-    return this.http.post(`${this._apiURL}/modify`, json)
+    return this.http.delete(`${this._apiURL}/add`, idUser)
     .pipe(
       map((data) => {
         return data.json();

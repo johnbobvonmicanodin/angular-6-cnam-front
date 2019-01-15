@@ -3,32 +3,24 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Login } from '../models/login';
+import { User } from '../models/user';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class UserService {
 
-  private _apiURL = 'http://demo.capcod.eu/movies/api';
+  private _apiURL = 'https://localhost:44380/api/users';
 
   constructor(public http: Http) {
 
   }
 
-  public getAll(): Observable<any> {
-      return this.http.get(`${this._apiURL}/movie`)
-      .pipe(
-        map((data) => {
-          return data.json();
-        }, (err) => {
-          console.log('An error occured', err);
-        })
-      );
-  }
+  public login(login: Login) {
 
-  public get(id): Observable<any> {
-    return this.http.get(`${this._apiURL}/movie/${id}`)
+    return this.http.post(`${this._apiURL}/login`, login)
     .pipe(
       map((data) => {
         return data.json();
@@ -38,8 +30,9 @@ export class DataService {
       );
   }
 
-  public post(id, comments) {
-    return this.http.post(`${this._apiURL}/movie/${id}/comment`, comments)
+  public addUser(user: User) {
+
+    return this.http.post(`${this._apiURL}/add`, user)
     .pipe(
       map((data) => {
         return data.json();
@@ -49,8 +42,9 @@ export class DataService {
       );
   }
 
-  public deleteCom(idfilm, idcomment) {
-    return this.http.delete(`${this._apiURL}/movie/${idfilm}/comment/${idcomment}`)
+  public deleteUser(user: User) {
+
+    return this.http.delete(`${this._apiURL}/add`, user)
     .pipe(
       map((data) => {
         return data.json();
@@ -60,8 +54,10 @@ export class DataService {
       );
   }
 
-  public modifyCom(idFilm, idcomm, comment) {
-    return this.http.post(`${this._apiURL}/movie/${idFilm}/comment/${idcomm}`, comment)
+  public modifyUser(userbefore: User, userafter: User) {
+    const json = {'userbefore': userbefore, 'userafter': userafter};
+
+    return this.http.post(`${this._apiURL}/modify`, json)
     .pipe(
       map((data) => {
         return data.json();
@@ -70,5 +66,8 @@ export class DataService {
       })
       );
   }
+
+
+
 
 }
