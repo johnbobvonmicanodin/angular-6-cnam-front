@@ -6,21 +6,21 @@
             <form role="form">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" name="firstname" [(ngModel)]="firstname" class="form-control input-underline input-lg" id="frstname" placeholder="{{ 'Prénom' | translate }}">
+                        <input type="text" [(ngModel)]="firstname" class="form-control input-underline input-lg" id="frstname" placeholder="{{ 'Prénom' | translate }}">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="lastname" [(ngModel)]="name" class="form-control input-underline input-lg" id="lastname" placeholder="{{ 'Nom' | translate }}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="mail" [(ngModel)]="mail" class="form-control input-underline input-lg" id="email" placeholder="{{ 'Email' | translate }}">
+                        <input type="text" [(ngModel)]="name" class="form-control input-underline input-lg" id="lastname" placeholder="{{ 'Nom' | translate }}">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" name="password" [(ngModel)]="password" class="form-control input-underline input-lg" id="pass" placeholder="{{ 'Mot de passe' | translate }}">
+                        <input type="text" [(ngModel)]="mail" class="form-control input-underline input-lg" id="email" placeholder="{{ 'Email' | translate }}">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="password" class="form-control input-underline input-lg" id="pass" placeholder="{{ 'Mot de passe' | translate }}">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="cpassword" [(ngModel)]="confirmpassword" class="form-control input-underline input-lg" id="cpass" placeholder="{{ 'Confirmer mot de passe' | translate }}">
+                        <input type="password" [(ngModel)]="confirmpassword" class="form-control input-underline input-lg" id="cpass" placeholder="{{ 'Confirmer mot de passe' | translate }}">
                     </div>
                 </div>
                 <a class="btn rounded-btn" (click)="signIn()">{{ 'Register' | translate }}</a>&nbsp;
@@ -37,12 +37,12 @@
                 <h6 class="card-header">
                         Social Login Test 1 
                 </h6>
-                    <!--<div class="card-block"></div>
+                    <div class="card-block"></div>
                     <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
                     <div class="card-block">
                         <h4 class="card-title">{{ user.name }}</h4>
                         <p class="card-text">{{ user.email }}</p>
-                  </div>-->
+                  </div>
                 
             </form>
         </div>

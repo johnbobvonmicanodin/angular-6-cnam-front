@@ -3,7 +3,6 @@ import { routerTransition } from '../router.animations';
 import { TranslateService } from '@ngx-translate/core';
 import { NgModel } from '@angular/forms';
 import { User } from '../models/user';
-import { UserService } from '../_services/user.service';
 
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
@@ -26,12 +25,11 @@ export class SignupComponent implements OnInit {
     password = '';
     confirmpassword = '';
 
-    userBase = new User();
+    userBase: User;
 
     constructor(
         private translate: TranslateService,
-        private authService: AuthService,
-        private userService: UserService
+        private authService: AuthService
         ) {
             this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
             this.translate.setDefaultLang('en');
@@ -40,9 +38,9 @@ export class SignupComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.authState.subscribe((user) => {
+        /*this.authService.authState.subscribe((user) => {
              this.user = user;
-        });
+        });*/
     }
 
     signIn() {
@@ -54,21 +52,7 @@ export class SignupComponent implements OnInit {
             this.userBase.Name = this.name;
             this.userBase.Password = this.password;
 
-            this.userService.addUser(this.userBase).subscribe(data => {
-            if (data.firstName != null) {
-                // console.log(data);
-                localStorage.setItem('isLoggedin', 'true');
-                localStorage.setItem('currentUser', data);
-                localStorage.setItem('firstname', data.firstName);
-                localStorage.setItem('name', data.name);
-                localStorage.setItem('email', data.email);
-                localStorage.setItem('isSeller', data.isSeller);
-                localStorage.setItem('id', data.id);
-                location.replace('/dashboard');
-            } else {
-                console.log('bad signin');
-            }
-            });
+            console.log(this.userBase.Email + this.userBase.Name);
         } else {
             console.log('mdp');
         }
