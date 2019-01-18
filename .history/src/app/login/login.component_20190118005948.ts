@@ -47,11 +47,13 @@ export class LoginComponent implements OnInit {
     signOut(): void {
         this.authService.signOut();
     }
+}
 
 
-    ngOnInit() {    }
 
-    onLoggedin() {
+    ngOnInit(); {    }
+
+    onLoggedin(); {
 
         this.login.mail = this.email;
         this.login.password = this.password;

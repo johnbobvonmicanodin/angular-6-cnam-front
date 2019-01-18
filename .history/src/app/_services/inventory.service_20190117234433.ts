@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
@@ -7,22 +7,23 @@ import { Product } from '../models/product';
 import { User } from '../models/user';
 import { Basket } from '../models/basket';
 import { Movement } from '../models/movement';
+import { Inventory } from '../models/inventory';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovementService {
+export class InventoryService {
 
-  private _apiURL = 'https://localhost:44380/api/movements';
+  private _apiURL = 'https://localhost:44380/api/inventories';
 
   constructor(public http: Http) {
 
   }
 
-  public getallMovementforAProduct(product: Product) {
+  public getallLastInventory() {
 
-    return this.http.post(`${this._apiURL}/getforproduct`, product)
+    return this.http.get(`${this._apiURL}/getall`)
     .pipe(
       map((data) => {
         return data.json();
@@ -32,9 +33,9 @@ export class MovementService {
       );
   }
 
-  public addMovement(movement: Movement) {
+  public addInventory(inventory: Inventory) {
 
-    return this.http.post(`${this._apiURL}/add`, movement)
+    return this.http.post(`${this._apiURL}/add`, inventory)
     .pipe(
       map((data) => {
         return data.json();
@@ -44,7 +45,7 @@ export class MovementService {
       );
   }
 
-  public deleteMovement(id) {
+  public deleteInventory(id) {
 
     return this.http.delete(`${this._apiURL}/delete`, id)
     .pipe(
@@ -59,4 +60,4 @@ export class MovementService {
 
 
 }
-
+ */

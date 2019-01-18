@@ -30,25 +30,7 @@ export class SignupComponent implements OnInit {
     ngOnInit() {
     this.authService.authState.subscribe((user) => {
         this.user = user;
+        this.loggedIn = (user != null);
     });
 }
-
-
-
-    signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithLinkedIn(): void {
-    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
-  }
-
-  signOut(): void {
-    this.authService.signOut();
-  }
-
 }

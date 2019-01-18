@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class MovementService {
 
   public getallMovementforAProduct(product: Product) {
 
-    return this.http.post(`${this._apiURL}/getforproduct`, product)
+    return this.http.post(`${this._apiURL}/getforproduct`, process)
     .pipe(
       map((data) => {
         return data.json();
@@ -59,4 +59,4 @@ export class MovementService {
 
 
 }
-
+ */

@@ -5,7 +5,6 @@ import { routerTransition } from '../router.animations';
 import { NgModel } from '@angular/forms';
 import { UserService } from '../_services/user.service';
 import { Login } from '../models/login';
-import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider, AuthService } from 'angularx-social-login';
 
 @Component({
     selector: 'app-login',
@@ -23,31 +22,13 @@ export class LoginComponent implements OnInit {
     constructor(
         private translate: TranslateService,
         public router: Router,
-        public userService: UserService,
-        private authService: AuthService
+        public userService: UserService
         ) {
             this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
             this.translate.setDefaultLang('en');
             const browserLang = this.translate.getBrowserLang();
             this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
     }
-
-    signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    }
-
-    signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    }
-
-    signInWithLinkedIn(): void {
-        this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
-    }
-
-    signOut(): void {
-        this.authService.signOut();
-    }
-
 
     ngOnInit() {    }
 

@@ -54,7 +54,6 @@ export const createTranslateLoader = (http: HttpClient) => {
         HttpClientModule,
         HttpModule,
         FormsModule,
-        SocialLoginModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -65,11 +64,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard,
-    {
-        provide: AuthServiceConfig,
-        useFactory: provideConfig
-    }],
+    providers: [AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

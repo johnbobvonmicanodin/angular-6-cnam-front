@@ -43,15 +43,13 @@ export class LoginComponent implements OnInit {
     signInWithLinkedIn(): void {
         this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
     }
-
-    signOut(): void {
-        this.authService.signOut();
-    }
+}
 
 
-    ngOnInit() {    }
 
-    onLoggedin() {
+    ngOnInit(); {    }
+
+    onLoggedin(); {
 
         this.login.mail = this.email;
         this.login.password = this.password;

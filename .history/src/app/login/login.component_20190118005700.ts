@@ -32,23 +32,6 @@ export class LoginComponent implements OnInit {
             this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
     }
 
-    signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    }
-
-    signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    }
-
-    signInWithLinkedIn(): void {
-        this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
-    }
-
-    signOut(): void {
-        this.authService.signOut();
-    }
-
-
     ngOnInit() {    }
 
     onLoggedin() {

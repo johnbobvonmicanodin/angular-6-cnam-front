@@ -1,28 +1,25 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
-import { User } from '../models/user';
-import { Basket } from '../models/basket';
-import { Movement } from '../models/movement';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovementService {
+export class ProductService {
 
-  private _apiURL = 'https://localhost:44380/api/movements';
+  private _apiURL = 'https://localhost:44380/api/products';
 
   constructor(public http: Http) {
 
   }
 
-  public getallMovementforAProduct(product: Product) {
+  public getallProducts() {
 
-    return this.http.post(`${this._apiURL}/getforproduct`, product)
+    return this.http.get(`${this._apiURL}/get`)
     .pipe(
       map((data) => {
         return data.json();
@@ -32,9 +29,9 @@ export class MovementService {
       );
   }
 
-  public addMovement(movement: Movement) {
+  public addProduct(product: Product) {
 
-    return this.http.post(`${this._apiURL}/add`, movement)
+    return this.http.post(`${this._apiURL}/add`, product)
     .pipe(
       map((data) => {
         return data.json();
@@ -44,7 +41,7 @@ export class MovementService {
       );
   }
 
-  public deleteMovement(id) {
+  public deleteProduct(id) {
 
     return this.http.delete(`${this._apiURL}/delete`, id)
     .pipe(
@@ -59,4 +56,4 @@ export class MovementService {
 
 
 }
-
+ */

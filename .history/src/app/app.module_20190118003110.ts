@@ -7,33 +7,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from 'angularx-social-login';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-
-
-// Login social
-const config = new AuthServiceConfig([
-    {
-      id: GoogleLoginProvider.PROVIDER_ID,
-      provider: new GoogleLoginProvider('Google-OAuth-Client-Id')
-    },
-    {
-      id: FacebookLoginProvider.PROVIDER_ID,
-      provider: new FacebookLoginProvider('Facebook-App-Id')
-    },
-    {
-      id: LinkedInLoginProvider.PROVIDER_ID,
-      provider: new LinkedInLoginProvider('LinkedIn-client-Id', false, 'en_US')
-    }
-  ]);
-
-  export function provideConfig() {
-    return config;
-  }
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -54,7 +33,6 @@ export const createTranslateLoader = (http: HttpClient) => {
         HttpClientModule,
         HttpModule,
         FormsModule,
-        SocialLoginModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -65,11 +43,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard,
-    {
-        provide: AuthServiceConfig,
-        useFactory: provideConfig
-    }],
+    providers: [AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
