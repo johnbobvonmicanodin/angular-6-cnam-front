@@ -27,7 +27,6 @@ export class SignupComponent implements OnInit {
     confirmpassword = '';
     alreadyExist = false;
     errorField = false;
-    badPassword = false;
 
     userBase = new User();
 
@@ -50,8 +49,6 @@ export class SignupComponent implements OnInit {
 
     signIn() {
 
-        const current = this;
-
         if (this.mail !== '' && this.firstname !== '' && this.name !== '' ) {
         if (this.password === this.confirmpassword && this.password !== '') {
             this.userBase.Email = this.mail;
@@ -71,17 +68,14 @@ export class SignupComponent implements OnInit {
                 localStorage.setItem('id', data.id);
                 location.replace('/dashboard');
             } else {
-                current.alreadyExist = true;
-                setTimeout(() => current.alreadyExist = false, 2000);
+                console.log('bad signin');
             }
             });
         } else {
-            current.badPassword = true;
-            setTimeout(() => current.badPassword = false, 2000);
+            console.log('mdp');
         }
         } else {
-            current.errorField = true;
-            setTimeout(() => current.errorField = false, 2000);
+            console.log('mailname');
         }
     }
 

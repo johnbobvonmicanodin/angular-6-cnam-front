@@ -58,14 +58,14 @@ export class LoginComponent implements OnInit {
 
         const current = this;
 
-        if (this.email !== '' && this.password !== '') {
+        if(this.email !== '' && this.password !== '') {
 
         this.login.mail = this.email;
         this.login.password = this.password;
 
         this.userService.login(this.login).subscribe(data => {
 
-            if (data != null) {
+            if (data.firstName != null) {
                 // console.log(data);
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('currentUser', data);

@@ -56,16 +56,12 @@ export class LoginComponent implements OnInit {
 
     onLoggedin() {
 
-        const current = this;
-
-        if (this.email !== '' && this.password !== '') {
-
         this.login.mail = this.email;
         this.login.password = this.password;
 
         this.userService.login(this.login).subscribe(data => {
 
-            if (data != null) {
+            if (data.firstName != null) {
                 // console.log(data);
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('currentUser', data);
@@ -77,14 +73,7 @@ export class LoginComponent implements OnInit {
                 location.replace('/dashboard');
             } else {
                 console.log('bad log');
-                current.failLog = true;
-                setTimeout(() => current.failLog = false, 2000);
             }
         });
-
-        } else {
-            current.errorField = true;
-            setTimeout(() => current.errorField = false, 2000);
-        }
     }
 }

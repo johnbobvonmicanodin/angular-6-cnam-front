@@ -13,7 +13,7 @@
                         <input type="password" name="password" [(ngModel)]="password" class="form-control input-underline input-lg" placeholder="{{ 'Password' | translate }}">
                     </div>
                     <div *ngIf="failLog" class="alert-danger">Bad login or bad password</div>
-                    <div *ngIf="errorField" class="alert-danger">Please fill the formular</div>                 
+                    <div *ngIf="errorField" class="alert-danger">Please fill the formular</div>
                 </div>
                 <a class="btn rounded-btn" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
                 &nbsp;

@@ -24,7 +24,6 @@
                     </div>
                     <div *ngIf="alreadyExist" class="alert-danger">This email is already taken</div>
                     <div *ngIf="errorField" class="alert-danger">Please fill the formular</div>
-                    <div *ngIf="badPassword" class="alert-danger">Your confirmed password is false</div>
                 </div>
                 <a class="btn rounded-btn" (click)="signIn()">{{ 'Register' | translate }}</a>&nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</a>

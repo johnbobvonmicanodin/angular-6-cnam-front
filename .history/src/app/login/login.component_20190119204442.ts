@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
         this.userService.login(this.login).subscribe(data => {
 
-            if (data != null) {
+            if (data.headers.ok) {
                 // console.log(data);
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('currentUser', data);
