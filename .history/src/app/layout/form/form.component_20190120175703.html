@@ -15,9 +15,7 @@
             <input type="number" name="timedelivery" class="form-control">
             <br>
             <label for="exampleInputFile">Illustration image</label>
-            <input type="file" (change)="OnImagePicked($event)" class="form-control-file" name="fileInput" id="exampleInputFile">
-            <br>
-            <button class="btn btn-primary" (click)="addNewProduct()">Insert</button>
+            <input type="file" [(ngModel)]="fileTest" class="form-control-file" name="fileInput" id="exampleInputFile">
                 
 
         
@@ -32,10 +30,5 @@
                 <label>Stockage Place</label>
                 <input type="text" name="place" maxlength="40" class="form-control">
         </div>
-    </div>
-
-    <h4></h4>
-    <div class="row">
-
     </div>
 </div>

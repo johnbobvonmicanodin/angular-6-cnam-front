@@ -14,23 +14,20 @@ export class FormComponent implements OnInit {
     constructor(private productService: ProductService) {}
 
     productToAdd = new Product();
-    imageToUpload: any;
 
     ngOnInit() {}
 
     addNewProduct() {
 
-        this.productService.addProduct(this.productToAdd).subscribe(data => {
+        /*this.productService.addProduct(this.productToAdd).subscribe(data => {
             console.log(data);
-        });
+        });*/
 
     }
 
     OnImagePicked(event: Event) {
         const file = (event.target as HTMLInputElement).files[0];
-        this.imageToUpload = file;
         console.log(file);
-        console.log(file.name);
         const reader = new FileReader();
         reader.readAsDataURL(file);
     }

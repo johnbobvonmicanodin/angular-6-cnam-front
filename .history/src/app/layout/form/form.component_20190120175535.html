@@ -6,18 +6,16 @@
         <div class="col-lg-6">
 
             <label>Title</label>
-            <input type="text" name="title" maxlength="40" class="form-control">
+            <input type="text" name="title" class="form-control">
             <br>
             <label>Description</label>
-            <textarea class="form-control" maxlength="400" name="descript" rows="4"></textarea>
+            <textarea class="form-control" name="descript" rows="4"></textarea>
             <br>
             <label>Estimated delivery time in open days</label>
             <input type="number" name="timedelivery" class="form-control">
             <br>
             <label for="exampleInputFile">Illustration image</label>
-            <input type="file" (change)="OnImagePicked($event)" class="form-control-file" name="fileInput" id="exampleInputFile">
-            <br>
-            <button class="btn btn-primary" (click)="addNewProduct()">Insert</button>
+            <input type="file" [(ngModel)]="fileTest" class="form-control-file" name="fileInput" id="exampleInputFile">
                 
 
         
@@ -30,12 +28,7 @@
                 <input type="number" name="tva" class="form-control">
                 <br>
                 <label>Stockage Place</label>
-                <input type="text" name="place" maxlength="40" class="form-control">
+                <input type="text" name="place" class="form-control">
         </div>
-    </div>
-
-    <h4></h4>
-    <div class="row">
-
     </div>
 </div>

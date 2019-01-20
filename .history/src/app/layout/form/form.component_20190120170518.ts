@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/_services/product.service';
-import { NgModel } from '@angular/forms';
 
 @Component({
     selector: 'app-form',
@@ -14,7 +13,8 @@ export class FormComponent implements OnInit {
     constructor(private productService: ProductService) {}
 
     productToAdd = new Product();
-    imageToUpload: any;
+
+    fileTest;
 
     ngOnInit() {}
 
@@ -24,14 +24,5 @@ export class FormComponent implements OnInit {
             console.log(data);
         });
 
-    }
-
-    OnImagePicked(event: Event) {
-        const file = (event.target as HTMLInputElement).files[0];
-        this.imageToUpload = file;
-        console.log(file);
-        console.log(file.name);
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
     }
 }

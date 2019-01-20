@@ -14,7 +14,8 @@ export class FormComponent implements OnInit {
     constructor(private productService: ProductService) {}
 
     productToAdd = new Product();
-    imageToUpload: any;
+
+    fileTest;
 
     ngOnInit() {}
 
@@ -27,10 +28,10 @@ export class FormComponent implements OnInit {
     }
 
     OnImagePicked(event: Event) {
+        console.log(this.fileTest);
+
         const file = (event.target as HTMLInputElement).files[0];
-        this.imageToUpload = file;
         console.log(file);
-        console.log(file.name);
         const reader = new FileReader();
         reader.readAsDataURL(file);
     }

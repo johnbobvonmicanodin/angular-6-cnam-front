@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
-    imagesPath = 'https://localhost:44380/images/';
+    imagesPath = 'src/assets/instruments/';
     imageTest = 'piano.jpg';
 
     constructor() {
