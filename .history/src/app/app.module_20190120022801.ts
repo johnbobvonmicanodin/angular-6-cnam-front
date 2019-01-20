@@ -23,7 +23,7 @@ const config = new AuthServiceConfig([
     },
     {
       id: FacebookLoginProvider.PROVIDER_ID,
-      provider: new FacebookLoginProvider('337903036939099')
+      provider: new FacebookLoginProvider(' 1242712392551160')
     },
     {
       id: LinkedInLoginProvider.PROVIDER_ID,
