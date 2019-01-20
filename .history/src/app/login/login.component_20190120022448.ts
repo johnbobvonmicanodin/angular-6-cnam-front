@@ -5,6 +5,7 @@ import { routerTransition } from '../router.animations';
 import { NgModel } from '@angular/forms';
 import { UserService } from '../_services/user.service';
 import { Login } from '../models/login';
+import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider, AuthService } from 'angularx-social-login';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private translate: TranslateService,
         public router: Router,
-        public userService: UserService
+        public userService: UserService,
+        private authService: AuthService
         ) {
             this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
             this.translate.setDefaultLang('en');
