@@ -3,32 +3,27 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Product } from '../models/product';
+import { User } from '../models/user';
+import { Basket } from '../models/basket';
+import { Movement } from '../models/movement';
+import { Inventory } from '../models/inventory';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class InventoryService {
 
-  private _apiURL = 'http://demo.capcod.eu/movies/api';
+  private _apiURL = 'https://localhost:44380/api/inventories';
 
   constructor(public http: Http) {
 
   }
 
-  public getAll(): Observable<any> {
-      return this.http.get(`${this._apiURL}/movie`)
-      .pipe(
-        map((data) => {
-          return data.json();
-        }, (err) => {
-          console.log('An error occured', err);
-        })
-      );
-  }
+  public getallLastInventory() {
 
-  public get(id): Observable<any> {
-    return this.http.get(`${this._apiURL}/movie/${id}`)
+    return this.http.get(`${this._apiURL}/getalllast`)
     .pipe(
       map((data) => {
         return data.json();
@@ -38,8 +33,9 @@ export class DataService {
       );
   }
 
-  public post(id, comments) {
-    return this.http.post(`${this._apiURL}/movie/${id}/comment`, comments)
+  public getLast(product: Product) {
+
+    return this.http.post(`${this._apiURL}/getlast`, product)
     .pipe(
       map((data) => {
         return data.json();
@@ -49,8 +45,9 @@ export class DataService {
       );
   }
 
-  public deleteCom(idfilm, idcomment) {
-    return this.http.delete(`${this._apiURL}/movie/${idfilm}/comment/${idcomment}`)
+  public addInventory(inventory: Inventory) {
+
+    return this.http.post(`${this._apiURL}/add`, inventory)
     .pipe(
       map((data) => {
         return data.json();
@@ -60,8 +57,9 @@ export class DataService {
       );
   }
 
-  public modifyCom(idFilm, idcomm, comment) {
-    return this.http.post(`${this._apiURL}/movie/${idFilm}/comment/${idcomm}`, comment)
+  public deleteInventory(id) {
+
+    return this.http.delete(`${this._apiURL}/delete`, id)
     .pipe(
       map((data) => {
         return data.json();
@@ -69,7 +67,8 @@ export class DataService {
         console.log('An error occured', err);
       })
       );
+
   }
+
 
 }
-

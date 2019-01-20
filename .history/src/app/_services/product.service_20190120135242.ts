@@ -4,24 +4,22 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
-import { User } from '../models/user';
-import { Basket } from '../models/basket';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class BasketService {
+export class ProductService {
 
-  private _apiURL = 'https://localhost:44380/api/baskets';
+  private _apiURL = 'https://localhost:44380/api/products';
 
   constructor(public http: Http) {
 
   }
 
-  public getallBasketsforUser(user: User) {
+  public getallProducts() {
 
-    return this.http.post(`${this._apiURL}/getforuser`, user)
+    return this.http.get(`${this._apiURL}/get`)
     .pipe(
       map((data) => {
         return data.json();
@@ -31,9 +29,9 @@ export class BasketService {
       );
   }
 
-  public addBasket(basket: Basket) {
+  public addProduct(product: Product) {
 
-    return this.http.post(`${this._apiURL}/add`, basket)
+    return this.http.post(`${this._apiURL}/add`, product)
     .pipe(
       map((data) => {
         return data.json();
@@ -43,9 +41,9 @@ export class BasketService {
       );
   }
 
-  public deleteBasket(b: Basket) {
+  public deleteProduct(id) {
 
-    return this.http.post(`${this._apiURL}/delete`, b)
+    return this.http.post(`${this._apiURL}/delete`, id)
     .pipe(
       map((data) => {
         return data.json();
@@ -54,18 +52,6 @@ export class BasketService {
       })
       );
 
-  }
-
-  public deleteAllBasketForUser(user: User) {
-
-    return this.http.post(`${this._apiURL}/deleteall`, user)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
   }
 
 

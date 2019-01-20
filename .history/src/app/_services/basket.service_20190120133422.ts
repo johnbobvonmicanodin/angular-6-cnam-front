@@ -6,24 +6,22 @@ import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
 import { User } from '../models/user';
 import { Basket } from '../models/basket';
-import { Movement } from '../models/movement';
-import { Inventory } from '../models/inventory';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class InventoryService {
+export class BasketService {
 
-  private _apiURL = 'https://localhost:44380/api/inventories';
+  private _apiURL = 'https://localhost:44380/api/baskets';
 
   constructor(public http: Http) {
 
   }
 
-  public getallLastInventory() {
+  public getallBasketsforUser(user: User) {
 
-    return this.http.get(`${this._apiURL}/getalllast`)
+    return this.http.post(`${this._apiURL}/getforuser`, user)
     .pipe(
       map((data) => {
         return data.json();
@@ -33,9 +31,9 @@ export class InventoryService {
       );
   }
 
-  public getLast(product: Product) {
+  public addBasket(basket: Basket) {
 
-    return this.http.post(`${this._apiURL}/getlast`, product)
+    return this.http.post(`${this._apiURL}/add`, basket)
     .pipe(
       map((data) => {
         return data.json();
@@ -45,21 +43,9 @@ export class InventoryService {
       );
   }
 
-  public addInventory(inventory: Inventory) {
+  public deleteBasket(b: Basket) {
 
-    return this.http.post(`${this._apiURL}/add`, inventory)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
-  }
-
-  public deleteInventory(id) {
-
-    return this.http.delete(`${this._apiURL}/delete`, id)
+    return this.http.delete(`${this._apiURL}/delete`, b)
     .pipe(
       map((data) => {
         return data.json();
@@ -72,3 +58,4 @@ export class InventoryService {
 
 
 }
+

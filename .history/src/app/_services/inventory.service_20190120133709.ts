@@ -33,18 +33,6 @@ export class InventoryService {
       );
   }
 
-  public getLast(product: Product) {
-
-    return this.http.post(`${this._apiURL}/getlast`, product)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
-  }
-
   public addInventory(inventory: Inventory) {
 
     return this.http.post(`${this._apiURL}/add`, inventory)

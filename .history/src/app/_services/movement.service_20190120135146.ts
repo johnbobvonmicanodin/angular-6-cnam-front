@@ -4,22 +4,25 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
+import { User } from '../models/user';
+import { Basket } from '../models/basket';
+import { Movement } from '../models/movement';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class MovementService {
 
-  private _apiURL = 'https://localhost:44380/api/products';
+  private _apiURL = 'https://localhost:44380/api/movements';
 
   constructor(public http: Http) {
 
   }
 
-  public getallProducts() {
+  public getallMovementforAProduct(product: Product) {
 
-    return this.http.get(`${this._apiURL}/get`)
+    return this.http.post(`${this._apiURL}/getalloneproduct`, product)
     .pipe(
       map((data) => {
         return data.json();
@@ -29,9 +32,9 @@ export class ProductService {
       );
   }
 
-  public addProduct(product: Product) {
+  public addMovement(movement: Movement) {
 
-    return this.http.post(`${this._apiURL}/add`, product)
+    return this.http.post(`${this._apiURL}/add`, movement)
     .pipe(
       map((data) => {
         return data.json();
@@ -40,20 +43,6 @@ export class ProductService {
       })
       );
   }
-
-  public deleteProduct(product: Product) {
-
-    return this.http.post(`${this._apiURL}/delete`, product)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
-
-  }
-
 
 }
 
