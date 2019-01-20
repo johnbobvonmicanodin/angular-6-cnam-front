@@ -46,9 +46,9 @@ export class FormComponent implements OnInit {
                 console.log(data);
             });
 
-            this.productService.addProduct(this.productToAdd).subscribe(data => {
+            /*this.productService.addProduct(this.productToAdd).subscribe(data => {
                 console.log(data);
-            });
+            });*/
         }
 
     }

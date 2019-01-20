@@ -41,11 +41,6 @@ export class FormComponent implements OnInit {
             this.productToAdd.Delivery_time = this.productDeliveryTime;
 
             this.resetProductForm();
-
-            this.productService.saveImage(formData).subscribe(data => {
-                console.log(data);
-            });
-
             this.productService.addProduct(this.productToAdd).subscribe(data => {
                 console.log(data);
             });

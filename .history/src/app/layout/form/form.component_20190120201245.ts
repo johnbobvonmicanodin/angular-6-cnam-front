@@ -28,10 +28,6 @@ export class FormComponent implements OnInit {
     addNewProduct() {
 
         if (this.imageToUpload !== undefined) {
-
-            const formData = new FormData();
-            formData.append(this.imageToUpload.name, this.imageToUpload);
-
             this.productToAdd.Name = this.productLabel;
             this.productToAdd.Description = this.productDescription;
             this.productToAdd.Picture = this.imageToUpload.name;
@@ -41,34 +37,26 @@ export class FormComponent implements OnInit {
             this.productToAdd.Delivery_time = this.productDeliveryTime;
 
             this.resetProductForm();
-
-            this.productService.saveImage(formData).subscribe(data => {
+            /*this.productService.addProduct(this.productToAdd).subscribe(data => {
                 console.log(data);
-            });
-
-            this.productService.addProduct(this.productToAdd).subscribe(data => {
-                console.log(data);
-            });
+            });*/
         }
 
     }
 
     OnImagePicked(event: Event) {
         const file = (event.target as HTMLInputElement).files[0];
-
-        if (file != null) {
-            this.imageToUpload = file;
-            console.log(file);
-            console.log(file.name);
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-         }
+        this.imageToUpload = file;
+        console.log(file);
+        console.log(file.name);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
     }
 
     resetProductForm() {
         this.productLabel = undefined;
         this.productDescription = undefined;
-        this.imageToUpload = undefined;
+        this.imageToUpload.name = undefined;
         this.productPrice = undefined;
         this.productTVA = undefined;
         this.productPlace = undefined;

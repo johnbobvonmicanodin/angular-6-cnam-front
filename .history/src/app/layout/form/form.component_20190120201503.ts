@@ -28,10 +28,6 @@ export class FormComponent implements OnInit {
     addNewProduct() {
 
         if (this.imageToUpload !== undefined) {
-
-            const formData = new FormData();
-            formData.append(this.imageToUpload.name, this.imageToUpload);
-
             this.productToAdd.Name = this.productLabel;
             this.productToAdd.Description = this.productDescription;
             this.productToAdd.Picture = this.imageToUpload.name;
@@ -41,14 +37,9 @@ export class FormComponent implements OnInit {
             this.productToAdd.Delivery_time = this.productDeliveryTime;
 
             this.resetProductForm();
-
-            this.productService.saveImage(formData).subscribe(data => {
+            /*this.productService.addProduct(this.productToAdd).subscribe(data => {
                 console.log(data);
-            });
-
-            this.productService.addProduct(this.productToAdd).subscribe(data => {
-                console.log(data);
-            });
+            });*/
         }
 
     }

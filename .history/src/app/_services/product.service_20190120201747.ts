@@ -29,21 +29,11 @@ export class ProductService {
       );
   }
 
-  public addProduct(product: Product) {
+  public addProduct(product: Product, image: any) {
 
-    return this.http.post(`${this._apiURL}/add`, product)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
-  }
+    const json = {'product' : product, 'image' : image};
 
-  public saveImage(formData: any) {
-
-    return this.http.post(`${this._apiURL}/addimage`, formData)
+    return this.http.post(`${this._apiURL}/add`, json)
     .pipe(
       map((data) => {
         return data.json();

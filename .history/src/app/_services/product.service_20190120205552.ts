@@ -43,7 +43,7 @@ export class ProductService {
 
   public saveImage(formData: any) {
 
-    return this.http.post(`${this._apiURL}/addimage`, formData)
+    this.http.post(`${this._apiURL}/addimage`, formData)
     .pipe(
       map((data) => {
         return data.json();

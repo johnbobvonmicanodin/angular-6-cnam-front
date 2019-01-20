@@ -43,12 +43,12 @@ export class FormComponent implements OnInit {
             this.resetProductForm();
 
             this.productService.saveImage(formData).subscribe(data => {
-                console.log(data);
+                console.log('hello world');
             });
 
-            this.productService.addProduct(this.productToAdd).subscribe(data => {
+            /*this.productService.addProduct(this.productToAdd).subscribe(data => {
                 console.log(data);
-            });
+            });*/
         }
 
     }
