@@ -19,20 +19,20 @@ export class DashboardComponent implements OnInit {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
-                label: 'A large choice of guitars',
+                label: 'View guitars',
                 text:
-                    'From 50,99€'
+                    'Up to 50,99€'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',
-                label: 'Drums',
-                text: 'The best drums to annoy your neighbours.'
+                label: 'Second slide label',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
             },
             {
                 imagePath: 'assets/images/slider3.jpg',
-                label: 'The Grove Organ',
+                label: 'Third slide label',
                 text:
-                    'For experts only.'
+                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }
         );
 

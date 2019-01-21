@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
                 imagePath: 'assets/images/slider3.jpg',
                 label: 'The Grove Organ',
                 text:
-                    'For experts only.'
+                    'Yes, we also sell organs because why not.'
             }
         );
 
