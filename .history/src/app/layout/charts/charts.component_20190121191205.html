@@ -36,10 +36,6 @@
                         <br>
                         <label>Estimated delivery time : {{selectedItem.delivery_time}} day(s)</label>
                         <br>
-                        <br>
-                        <label>Number to buy :</label>
-                        <input type="number" name="number" [(ngModel)]="numberToBuy" class="form-control">
-                        <br>
                         <button class="btn btn-info btn-sm" (click)="addToBasket()" >Add to Basket</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button>                     
@@ -70,7 +66,7 @@
                         <br>
                         <button class="btn btn-primary" (click)="updateProduct()">Update</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-primary" (click)="goBack()" >Back</button> 
+                        <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button> 
                             
             
                     

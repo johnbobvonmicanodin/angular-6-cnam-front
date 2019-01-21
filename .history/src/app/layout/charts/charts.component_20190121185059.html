@@ -1,0 +1,62 @@
+<div [@routerTransition]>
+    <h2>Catalog</h2>
+    <br>
+    <div *ngIf="onCatalog" class="row">
+        
+        <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{item.name}} - Prix HT : {{item.priceHT}} €
+                </div>
+                <div class="card-body">
+                    <img [src]="urlServer+item.picture" width="100%" height="250">
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >See details</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-info btn-sm" *ngIf="isASeller" (click)="gotoUpdate(item)" >Update</button>
+                </div>        
+            </div>     
+        </div>
+    </div>
+
+    <div *ngIf="onDetails">
+            <div class="row">
+                    <div class="col-lg-6">
+                        <h4>Article Title : {{selectedItem.name}}</h4>
+                        <br>
+                        <label>Description :</label>
+                        <p>{{selectedItem.description}}</p>
+                        <br>
+                        <label>Price WT : {{selectedItem.priceHT}} €</label>
+                        <label>Taxes : {{selectedItem.TVA}}</label>
+                        <br>
+                        <label>Stockage place : {{selectedItem.Stock_place}}</label>
+                        <label>Estimated delivery time : {{selectedItem.Delivery_time}}</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <img [src]="urlServer+selectedItem.picture" width="100%" height="250">
+                    </div>
+            
+                    <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button>
+                    </div>
+    </div>
+
+    <div *ngIf="onUpdate">
+        <div class="row">
+        <div class="col-lg-6">
+            <h4>Article Title : {{selectedItem.name}}</h4>
+            <br>
+            <label>Description :</label>
+            <p>{{selectedItem.description}}</p>
+        
+        </div>
+        <div class="col-lg-6">
+            <img [src]="urlServer+selectedItem.picture" width="100%" height="250">
+        </div>
+
+        <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button>
+        </div>
+    </div>
+
+</div>

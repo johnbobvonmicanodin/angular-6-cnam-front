@@ -12,8 +12,6 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
-    admin = false;
-    user = false;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
@@ -39,14 +37,6 @@ export class SidebarComponent implements OnInit {
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
-
-        if (localStorage.getItem('isSeller') === '1') {
-            this.admin = true;
-        }
-
-        if (localStorage.getItem('firstname') != null) {
-            this.user = true;
-        }
     }
 
 

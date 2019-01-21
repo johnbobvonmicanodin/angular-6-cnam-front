@@ -57,7 +57,7 @@ export class ChartsComponent implements OnInit {
     }
 
     addToBasket() {
-        this.numberToBuy = 1;
+        // yes
     }
 
     updateProduct() {
@@ -74,7 +74,7 @@ export class ChartsComponent implements OnInit {
         }
 
         this.productService.updateProduct(this.selectedItem).subscribe(data => {
-            alert('update done');
+            console.log('update done');
         });
     }
 

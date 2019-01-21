@@ -15,14 +15,12 @@ export class ChartsComponent implements OnInit {
     iterator = 0;
     urlServer = 'https://localhost:44380/images/';
 
-    numberToBuy = 1;
-
-    selectedItem: any;
-    imageToUpload: any;
+    selectedItem;
 
     onCatalog = true;
     onDetails = false;
     onUpdate = false;
+
     isASeller = false;
 
     constructor(private productService: ProductService) {}
@@ -57,34 +55,14 @@ export class ChartsComponent implements OnInit {
     }
 
     addToBasket() {
-        this.numberToBuy = 1;
+        // yes
     }
 
     updateProduct() {
 
-        if (this.imageToUpload !== undefined) {
-            this.selectedItem.picture = this.imageToUpload.name;
-
-            const formData = new FormData();
-            formData.append(this.imageToUpload.name, this.imageToUpload);
-
-            this.productService.saveImage(formData).subscribe(data => {
-                this.imageToUpload = undefined;
-            });
-        }
-
-        this.productService.updateProduct(this.selectedItem).subscribe(data => {
-            alert('update done');
-        });
     }
 
     OnImagePicked($event) {
-        const file = (event.target as HTMLInputElement).files[0];
 
-        if (file != null) {
-            this.imageToUpload = file;
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-         }
     }
 }

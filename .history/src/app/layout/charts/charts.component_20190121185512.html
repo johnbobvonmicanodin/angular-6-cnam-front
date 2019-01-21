@@ -1,0 +1,71 @@
+<div [@routerTransition]>
+    <h2>Catalog</h2>
+    <br>
+    <div *ngIf="onCatalog" class="row">
+        
+        <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{item.name}} - Prix HT : {{item.priceHT}} €
+                </div>
+                <div class="card-body">
+                    <img [src]="urlServer+item.picture" width="100%" height="250">
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >See details</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-info btn-sm" *ngIf="isASeller" (click)="gotoUpdate(item)" >Update</button>
+                </div>        
+            </div>     
+        </div>
+    </div>
+
+    <div *ngIf="onDetails">
+            <div class="row">
+                    <div class="col-lg-6">
+                        <h4>Article Title : {{selectedItem.name}}</h4>
+                        <br>
+                        <label>Description :</label>
+                        <p>{{selectedItem.description}}</p>                                      
+                        <label>Price WT : {{selectedItem.priceHT}} €</label>
+                        <br>
+                        <label>Taxes : {{selectedItem.tva}}%</label>
+                        <br>
+                        <br>
+                        <label>Stockage place : {{selectedItem.stock_place}}</label>
+                        <br>
+                        <label>Estimated delivery time : {{selectedItem.delivery_time}} day(s)</label>
+                        <br>
+                        <button class="btn btn-info btn-sm" (click)="addToBasket()" >Add to Basket</button>
+                                         
+                    </div>
+                    <div class="col-lg-6">
+                        <img [src]="urlServer+selectedItem.picture" width="100%" height="250">
+                        <br>
+                        
+                        <br>
+                        <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button>   
+                    </div>
+            
+                   
+                    </div>
+    </div>
+
+    <div *ngIf="onUpdate">
+        <div class="row">
+        <div class="col-lg-6">
+            <h4>Article Title : {{selectedItem.name}}</h4>
+            <br>
+            <label>Description :</label>
+            <p>{{selectedItem.description}}</p>
+        
+        </div>
+        <div class="col-lg-6">
+            <img [src]="urlServer+selectedItem.picture" width="100%" height="250">
+        </div>
+
+        <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button>
+        </div>
+    </div>
+
+</div>

@@ -74,7 +74,7 @@ export class ChartsComponent implements OnInit {
         }
 
         this.productService.updateProduct(this.selectedItem).subscribe(data => {
-            alert('update done');
+            console.log('update done');
         });
     }
 

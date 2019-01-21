@@ -1,0 +1,31 @@
+<div [@routerTransition]>
+    <h2>Catalog</h2>
+    <br>
+    <div *ngIf="onCatalog" class="row">
+        
+        <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{item.name}} - Prix HT : {{item.priceHT}} €
+                </div>
+                <div class="card-body">
+                    <img [src]="urlServer+item.picture" width="100%" height="250">
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >See details</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-info btn-sm" (click)="gotoUpdate(item)" >Update</button>
+                </div>        
+            </div>     
+        </div>
+    </div>
+
+    <div *ngIf="onDetails">
+
+    </div>
+
+    <div *ngIf="onUpdate">
+
+    </div>
+
+</div>

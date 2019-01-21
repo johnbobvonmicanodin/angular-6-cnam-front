@@ -1,0 +1,22 @@
+<div [@routerTransition]>
+    <h2>Catalog</h2>
+    <br>
+    <div class="row">
+        
+        <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{item.name}}
+                </div>
+                <div class="card-body">
+                    <img [src]="urlServer+item.picture" width="250" height="250">
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm" >See details</button>
+                    <button class="btn btn-info btn-sm" >Update</button>
+                </div>        
+            </div>     
+        </div>
+     </div>
+
+</div>
