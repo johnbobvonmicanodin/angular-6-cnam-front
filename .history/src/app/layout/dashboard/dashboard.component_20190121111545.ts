@@ -30,9 +30,9 @@ export class DashboardComponent implements OnInit {
             },
             {
                 imagePath: 'assets/images/slider3.jpg',
-                label: 'The Grove Organ',
+                label: 'Third slide label',
                 text:
-                    'For experts only.'
+                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }
         );
 
