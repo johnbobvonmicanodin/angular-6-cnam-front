@@ -15,9 +15,9 @@
                     <div *ngIf="failLog" class="alert-danger">Bad login or bad password</div>
                     <div *ngIf="errorField" class="alert-danger">Please fill the formular</div>                 
                 </div>
-                <a class="btn btn-primary" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
+                <a class="btn rounded-btn btn-primary" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
                 &nbsp;
-                <a class="btn btn-secondary" [routerLink]="['/signup']">{{ 'Register' | translate }}</a>
+                <a class="btn rounded-btn btn-secondary" [routerLink]="['/signup']">{{ 'Register' | translate }}</a>
             </form>
             
         </div>

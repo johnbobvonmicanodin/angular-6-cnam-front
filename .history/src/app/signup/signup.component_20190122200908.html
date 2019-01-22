@@ -36,10 +36,15 @@
         <div class="col-md-4">
             <h1> Connect with a Facebook account </h1>
                 <div class="card-block">
-                    <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+                <!--    <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
                     <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
                     <button class="btn btn-social-icon btn-linkedin mx-1" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>
-
+                -->
+                </div>
+                <div class="card-block">
+                    
+<button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
+<button (click)="socialSignIn('google')">Sign in with Google</button>      
                 </div>
         </div>
     </div>

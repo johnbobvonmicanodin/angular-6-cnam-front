@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signInWithFB() {
+  signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
 
 

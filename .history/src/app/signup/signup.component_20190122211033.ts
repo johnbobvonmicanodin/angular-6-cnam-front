@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signInWithFB() {
+  signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
 
 
@@ -99,6 +99,7 @@ export class SignupComponent implements OnInit {
             localStorage.setItem('firstname', data.firstName);
             localStorage.setItem('name', data.name);
             localStorage.setItem('email', data.email);
+            localStorage.setItem('isSeller', data.isSeller);
             localStorage.setItem('id', data.id);
             location.replace('/dashboard');
     });
