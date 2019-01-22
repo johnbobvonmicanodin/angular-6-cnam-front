@@ -28,8 +28,6 @@ export class CatalogComponent implements OnInit {
     onUpdate = false;
     isASeller = false;
     isLog = false;
-    isUp = false;
-    isForward = false;
 
     constructor(private productService: ProductService, private basketService: BasketService) {}
 
@@ -114,16 +112,10 @@ export class CatalogComponent implements OnInit {
     }
 
     setActive() {
-        this.productService.setProductUp(this.selectedItem).subscribe(data => {
-            this.isUp = true;
-            setTimeout(() => this.isUp = false, 2000);
-        });
+        this.productService.setProductUp(this.selectedItem);
     }
 
     setForward() {
-        this.productService.setProductForward(this.selectedItem).subscribe(data => {
-            this.isForward = true;
-            setTimeout(() => this.isForward = false, 2000);
-        });
+        this.productService.setProductForward(this.selectedItem);
     }
 }

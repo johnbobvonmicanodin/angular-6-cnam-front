@@ -20,8 +20,6 @@ export class BasketComponent implements OnInit {
     indicetwo = 0.01;
     totalPrice = 0;
 
-    isOnPayment = false;
-
     ngOnInit() {
         this.currentUser.Id = localStorage.getItem('id');
 
@@ -44,14 +42,6 @@ export class BasketComponent implements OnInit {
     }
 
     calculTotalPrice() {
-        this.totalPrice = 0;
 
-        this.basketList.forEach(item => {
-            this.totalPrice += ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
-        });
-    }
-
-    goToPayment() {
-        this.isOnPayment = true;
     }
 }

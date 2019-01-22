@@ -8,26 +8,12 @@
         <div class="col-lg-6">
             <h4>Total price (with taxes) : {{totalPrice}}€</h4>
             <br>
-            <!--<button class="btn btn-primary text-right" (click)="goToPayment()">Buy this Basket</button>-->  
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                <img src="http://www.pngall.com/wp-content/uploads/2016/03/Paypal-Logo-PNG.png" height="70" width="200">
-                <input type="hidden" name="cmd" value="_cart">
-                <input type="hidden" name="business" value="klaydsoul@klaydsoul.com">
-                <input type="hidden" name="item_name" value="hat">
-                <input type="hidden" name="item_number" value="123">
-                <input type="hidden" name="amount" value="15.00">
-                <input type="hidden" name="email" value="jdoe@zyzzyu.com">
-                <input type="image" name="submit"
-                  src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-                  alt="PayPal - The safer, easier way to pay online">
-              </form>
+            <button class="btn btn-primary text-right" (click)="goToPayment()">Buy this Basket</button>
         </div>
     </div>
     <br>
     <br>
 
-    <h5>My articles</h5>
-    <br>
     <table class="table" id="maTable">
         <thead class="thead-inverse">
         <tr>
@@ -54,15 +40,12 @@
         </tbody>
     </table>
 
-    <br>
-    <br>
-    
-    <!--<h5>My past purchases</h5>-->
-
     </div>
 
     <div *ngIf="isOnPayment">
-          
+            <FORM action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+            </FORM>
     </div>
 
 

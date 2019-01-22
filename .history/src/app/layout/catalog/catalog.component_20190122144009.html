@@ -6,7 +6,7 @@
         <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
             <div class="card mb-3">
                 <div class="card-header">        
-                    <p class="text-left"><b>{{item.name}}</b> &nbsp;&nbsp;Price (Exclusive of Tax) : {{item.priceHT}} € </p>
+                    <p class="text-right">{{item.name}}   Price (Exclusive of Tax) : {{item.priceHT}} € </p>
                 </div>
                 <div class="card-body">
                     <img [src]="urlServer+item.picture" width="100%" height="250">
@@ -40,9 +40,9 @@
                         <label>Number to buy :</label>
                         <input type="number" name="number" [(ngModel)]="numberToBuy" class="form-control">
                         <br>
-                        <button class="btn btn-primary" (click)="addToBasket()" >Add to Basket</button>
+                        <button class="btn btn-info btn-sm" (click)="addToBasket()" >Add to Basket</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-danger" (click)="goBack()" >Back</button>                     
+                        <button class="btn btn-info btn-sm" (click)="goBack()" >Back</button>                     
                     </div>
                     <div class="col-lg-6">
                         <img [src]="urlServer+selectedItem.picture" width="100%" height="250">
@@ -70,7 +70,7 @@
                         <br>
                         <button class="btn btn-primary" (click)="updateProduct()">Update</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                       
+                        <button class="btn btn-primary" (click)="goBack()" >Back</button> 
                             
             
                     
@@ -86,36 +86,6 @@
                             <input type="text" name="place" [(ngModel)]="selectedItem.stock_place" maxlength="40" class="form-control">
                     </div>
         </div>  
-
-        <br>
-        <br>
-
-        <div class="row">
-                <div class="col-lg-6">
-                    <label>Set the product Active/Inactive : </label>                 
-                    <select [(ngModel)]="selectedItem.up" class="form-control">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                    </select>
-                    <br>
-                    <button class="btn btn-primary" (click)="setActive()">Update active</button>
-                    <div *ngIf="isUp"><label>Update done !</label></div>
-                </div>
-                <div class="col-lg-6">
-                        <label>Set the product Forward/Backward : </label>
-                        <select [(ngModel)]="selectedItem.forward" class="form-control">
-                                <option value="1">Forward</option>
-                                <option value="0">Back</option>
-                        </select>
-                        <br>
-                        <button class="btn btn-primary" (click)="setForward()">Update forward</button>
-                        <div *ngIf="isForward"><label>Update done !</label></div>
-
-                </div>
-        </div>
-        <br>
-        <br>
-        <button class="btn btn-danger" (click)="goBack()" >Back</button> 
     </div>
 
 </div>
