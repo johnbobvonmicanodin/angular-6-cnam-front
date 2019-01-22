@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
                 imagePath: 'assets/images/slider1.jpg',
                 label: 'A large choice of guitars',
                 text:
-                    'From 250€'
+                    'From 80€'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',
