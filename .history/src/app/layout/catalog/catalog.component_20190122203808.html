@@ -93,23 +93,21 @@
         <div class="row">
                 <div class="col-lg-6">
                     <label>Set the product Active/Inactive : </label>                 
-                    <select [(ngModel)]="selectedItem.up" class="form-control">
+                    <select [(ngModel)]="selectedItem.Up" class="form-control">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                     </select>
                     <br>
                     <button class="btn btn-primary" (click)="setActive()">Update active</button>
-                    <div *ngIf="isUp"><label>Update done !</label></div>
                 </div>
                 <div class="col-lg-6">
                         <label>Set the product Forward/Backward : </label>
-                        <select [(ngModel)]="selectedItem.forward" class="form-control">
+                        <select [(ngModel)]="selectedItem.Forward" class="form-control">
                                 <option value="1">Forward</option>
                                 <option value="0">Back</option>
                         </select>
                         <br>
                         <button class="btn btn-primary" (click)="setForward()">Update forward</button>
-                        <div *ngIf="isForward"><label>Update done !</label></div>
 
                 </div>
         </div>
