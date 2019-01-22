@@ -4,7 +4,7 @@
             <i class="fa fa-fw fa-home"></i>&nbsp;
             <span>{{ 'Home' | translate }}</span>
         </a>
-        <a [routerLink]="['/catalog']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-shopping-cart"></i>&nbsp;
             <span>{{ 'Catalog' | translate }}</span>
         </a>
@@ -12,7 +12,7 @@
             <i class="fa fa-fw fa-shopping-bag"></i>&nbsp;
             <span>{{ 'Basket' | translate }}</span>
         </a>
-        <a [routerLink]="['/gestion']" *ngIf="admin" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/forms']" *ngIf="admin" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-user"></i>&nbsp;
             <span>{{ 'Gestion' | translate }}</span>
         </a>

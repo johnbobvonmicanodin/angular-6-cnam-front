@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { ProductService } from 'src/app/_services/product.service';
 import { NgModel } from '@angular/forms';
+import { BasketService } from 'src/app/_services/basket.service';
+import { Basket } from 'src/app/models/basket';
+import { User } from 'src/app/models/user';
 
 @Component({
     selector: 'app-charts',
@@ -25,7 +28,7 @@ export class ChartsComponent implements OnInit {
     onUpdate = false;
     isASeller = false;
 
-    constructor(private productService: ProductService) {}
+    constructor(private productService: ProductService, private basketService: BasketService) {}
 
     ngOnInit() {
         if (localStorage.getItem('isSeller') === '1') {
@@ -57,6 +60,19 @@ export class ChartsComponent implements OnInit {
     }
 
     addToBasket() {
+
+        const user = new User();
+        user.Id = localStorage.getItem('id');
+
+        const basketToAdd = new Basket();
+        basketToAdd.Product_choose = this.selectedItem;
+        basketToAdd.BasketOwner = user;
+        basketToAdd.Number = this.numberToBuy;
+
+        this.basketService.addBasket(basketToAdd).subscribe(data => {
+            // let it go
+        });
+
         this.numberToBuy = 1;
     }
 
