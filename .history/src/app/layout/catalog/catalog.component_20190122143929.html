@@ -5,8 +5,9 @@
         
         <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
             <div class="card mb-3">
-                <div class="card-header">        
-                    <p class="text-left"><b>{{item.name}}</b> &nbsp;&nbsp;Price (Exclusive of Tax) : {{item.priceHT}} € </p>
+                <div class="card-header">
+                    {{item.name}}   &nbsp;&nbsp; &nbsp;&nbsp;
+                    <p class="text-right">Price (Exclusive of Tax) : {{item.priceHT}} € </p>
                 </div>
                 <div class="card-body">
                     <img [src]="urlServer+item.picture" width="100%" height="250">

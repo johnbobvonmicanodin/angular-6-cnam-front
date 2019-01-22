@@ -1,0 +1,47 @@
+<div [@routerTransition]>
+   
+    <h2>My Basket</h2>
+    <br>
+
+    <div>
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Total price (with taxes) : {{totalPrice}}</label>
+        </div>
+        <div class="col-lg-6">
+            <button class="btn btn-primary">Buy this Basket</button>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <table class="table" id="maTable">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Article</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Price HT</th>
+            <th>Taxe</th>
+            <th>Total Price</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of basketList">
+            <td>{{item.product_choose.name}}</td>
+            <td><img [src]="urlServer+item.product_choose.picture" height="40" width="40"></td>
+            <td>{{item.number}}</td>
+            <td>{{item.product_choose.priceHT*item.number}}€</td>
+            <td>{{item.product_choose.tva}}%</td>
+            <td>{{((item.product_choose.tva*indicetwo)+indice)*(item.product_choose.priceHT*item.number)}}€</td>
+            <td><button class="btn btn-danger" (click)="deleteArticle(item)">Delete Article</button></td>
+         
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+
+</div>

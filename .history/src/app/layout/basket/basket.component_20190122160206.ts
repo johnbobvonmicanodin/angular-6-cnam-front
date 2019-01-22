@@ -13,14 +13,11 @@ import { User } from 'src/app/models/user';
 export class BasketComponent implements OnInit {
     constructor(private basketService: BasketService, private movementService: MovementService) {}
 
-    urlServer = 'https://localhost:44380/images/';
     currentUser: User = new User();
     basketList: any;
     indice = 1;
     indicetwo = 0.01;
     totalPrice = 0;
-
-    isOnPayment = false;
 
     ngOnInit() {
         this.currentUser.Id = localStorage.getItem('id');
@@ -44,14 +41,6 @@ export class BasketComponent implements OnInit {
     }
 
     calculTotalPrice() {
-        this.totalPrice = 0;
 
-        this.basketList.forEach(item => {
-            this.totalPrice += ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
-        });
-    }
-
-    goToPayment() {
-        this.isOnPayment = true;
     }
 }

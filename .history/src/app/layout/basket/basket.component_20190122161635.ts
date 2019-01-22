@@ -50,8 +50,4 @@ export class BasketComponent implements OnInit {
             this.totalPrice += ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
         });
     }
-
-    goToPayment() {
-        this.isOnPayment = true;
-    }
 }
