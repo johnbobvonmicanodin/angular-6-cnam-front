@@ -6,8 +6,6 @@ import { BasketService } from 'src/app/_services/basket.service';
 import { Basket } from 'src/app/models/basket';
 import { User } from 'src/app/models/user';
 import { MovementService } from 'src/app/_services/movement.service';
-import { InventoryService } from 'src/app/_services/inventory.service';
-import { Inventory } from 'src/app/models/inventory';
 
 @Component({
     selector: 'app-catalog',
@@ -36,22 +34,21 @@ export class CatalogComponent implements OnInit {
     isUp = false;
     isForward = false;
 
-    inventoryOfSelectedItem: Inventory = new Inventory();
-
-    constructor(private productService: ProductService,
-                private basketService: BasketService,
-                private movementService: MovementService,
-                private inventoryService: InventoryService) {}
+    constructor(private productService: ProductService, private basketService: BasketService, private movementService: MovementService) {}
 
     ngOnInit() {
         if (localStorage.getItem('isSeller') === '1') {
             this.isASeller = true;
 
-            this.currentUser.Id = localStorage.getItem('id');
-
             this.productService.getallProducts().subscribe(data => {
                 this.productList = data;
             });
+        } else if (localStorage.getItem('isSeller') === '1') {
+
+            this.productService.getallProductsUp().subscribe(data => {
+                this.productList = data;
+            });
+
         } else {
 
             this.productService.getallProductsUp().subscribe(data => {
@@ -63,22 +60,12 @@ export class CatalogComponent implements OnInit {
 
     gotoDetails(item) {
         this.selectedItem = item;
-
-        this.inventoryService.getLast(this.selectedItem).subscribe(data => {
-            this.inventoryOfSelectedItem = data;
-        });
-
         this.onCatalog = false;
         this.onDetails = true;
     }
 
     gotoUpdate(item) {
         this.selectedItem = item;
-
-        this.inventoryService.getLast(this.selectedItem).subscribe(data => {
-            this.inventoryOfSelectedItem = data;
-        });
-
         this.onCatalog = false;
         this.onUpdate = true;
     }

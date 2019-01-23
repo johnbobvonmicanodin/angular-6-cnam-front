@@ -5,7 +5,6 @@ import { ProductService } from 'src/app/_services/product.service';
 import { NgModel } from '@angular/forms';
 import { InventoryService } from 'src/app/_services/inventory.service';
 import { Inventory } from 'src/app/models/inventory';
-import { MovementService } from 'src/app/_services/movement.service';
 
 @Component({
     selector: 'app-gestion',
@@ -14,9 +13,7 @@ import { MovementService } from 'src/app/_services/movement.service';
     animations: [routerTransition()]
 })
 export class GestionComponent implements OnInit {
-    constructor(private productService: ProductService,
-                private inventoryService: InventoryService,
-                private movementService: MovementService) {}
+    constructor(private productService: ProductService, private inventoryService: InventoryService) {}
 
     productToAdd = new Product();
     imageToUpload: any;
@@ -31,13 +28,8 @@ export class GestionComponent implements OnInit {
     productActive = 0;
 
     inventoryToAdd = new Inventory();
-    listCommands: any;
 
-    ngOnInit() {
-        this.movementService.getallPurchase().subscribe(data => {
-            this.listCommands = data;
-        });
-    }
+    ngOnInit() {}
 
     addNewProduct() {
 

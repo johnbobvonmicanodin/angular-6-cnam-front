@@ -56,18 +56,6 @@ export class MovementService {
       );
   }
 
-  public getallPurchase() {
-
-    return this.http.get(`${this._apiURL}/getallpurchase`)
-    .pipe(
-      map((data) => {
-        return data.json();
-      }, (err) => {
-        console.log('An error occured', err);
-      })
-      );
-  }
-
   public addMovement(movement: Movement) {
 
     return this.http.post(`${this._apiURL}/add`, movement)

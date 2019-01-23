@@ -4,8 +4,6 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/_services/product.service';
 import { NgModel } from '@angular/forms';
 import { InventoryService } from 'src/app/_services/inventory.service';
-import { Inventory } from 'src/app/models/inventory';
-import { MovementService } from 'src/app/_services/movement.service';
 
 @Component({
     selector: 'app-gestion',
@@ -14,9 +12,7 @@ import { MovementService } from 'src/app/_services/movement.service';
     animations: [routerTransition()]
 })
 export class GestionComponent implements OnInit {
-    constructor(private productService: ProductService,
-                private inventoryService: InventoryService,
-                private movementService: MovementService) {}
+    constructor(private productService: ProductService, private inventoryService: InventoryService) {}
 
     productToAdd = new Product();
     imageToUpload: any;
@@ -30,18 +26,9 @@ export class GestionComponent implements OnInit {
     productForward = 0;
     productActive = 0;
 
-    inventoryToAdd = new Inventory();
-    listCommands: any;
-
-    ngOnInit() {
-        this.movementService.getallPurchase().subscribe(data => {
-            this.listCommands = data;
-        });
-    }
+    ngOnInit() {}
 
     addNewProduct() {
-
-        const current = this;
 
         if (this.imageToUpload !== undefined) {
 
@@ -65,15 +52,7 @@ export class GestionComponent implements OnInit {
             });
 
             this.productService.addProduct(this.productToAdd).subscribe(data => {
-                if (this.inventoryToAdd.Stock == null) {
-                    this.inventoryToAdd.Stock = 0;
-                }
-                this.inventoryToAdd.ProductStock = data;
-                this.inventoryToAdd.Date = new Date();
-
-                this.inventoryService.addInventory(this.inventoryToAdd).subscribe(res => {
-                    console.log(res);
-                });
+                console.log(data);
             });
         }
 
@@ -99,6 +78,5 @@ export class GestionComponent implements OnInit {
         this.productTVA = undefined;
         this.productPlace = undefined;
         this.productDeliveryTime = undefined;
-        this.inventoryToAdd.Stock = 0;
     }
 }

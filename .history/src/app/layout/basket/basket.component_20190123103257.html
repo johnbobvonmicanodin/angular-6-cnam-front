@@ -8,7 +8,7 @@
         <div class="col-lg-6">
             <h4>Total price (with taxes) : {{totalPrice}}€</h4>
             <br>
-            <button class="btn btn-primary text-right" *ngIf="canBuy" (click)="goToPayment()">Buy this Basket</button>        
+            <button class="btn btn-primary text-right" (click)="goToPayment()">Buy this Basket</button>        
         </div>
     </div>
     <br>
@@ -22,7 +22,7 @@
             <th>Article</th>
             <th>Image</th>
             <th>Quantity</th>
-            <th>Price WT</th>
+            <th>Price HT</th>
             <th>Taxe</th>
             <th>Total Price</th>
             <th>Delete</th>
