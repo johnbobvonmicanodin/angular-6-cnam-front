@@ -21,9 +21,7 @@ import { FormsModule } from '@angular/forms';
         NgbCarouselModule,
         NgbAlertModule,
         DashboardRoutingModule,
-        StatModule,
-        Ng2Charts,
-        FormsModule
+        StatModule
     ],
     declarations: [
         DashboardComponent,

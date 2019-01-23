@@ -23,21 +23,20 @@ export class DashboardComponent implements OnInit {
 
     productList = [];
     iterator = 0;
-    urlServer = 'https://localhost:44380/images/';
-
-    numberToBuy = 1;
-
-    selectedItem: any;
-    imageToUpload: any;
-
-    onCatalog = true;
-    onDetails = false;
-    onUpdate = false;
     isASeller = false;
     isLog = false;
     isUp = false;
     isForward = false;
 
+    onCatalog = true;
+    onDetails = false;
+    onUpdate = false;
+    numberToBuy = 1;
+
+    selectedItem: any;
+    imageToUpload: any;
+
+    urlServer = 'https://localhost:44380/images/';
 
     constructor(private _productService: ProductService,  private basketService: BasketService) {
         this.sliders.push(
@@ -58,9 +57,18 @@ export class DashboardComponent implements OnInit {
                 text:
                     'For experts only.'
             }
-);
+        );
+        if (localStorage.getItem('isSeller') === '1') {
+            this.isASeller = true;
 
-
+            this._productService.getallProducts().subscribe(data => {
+                this.productList = data;
+            });
+        } else {
+            this._productService.getallProductsUp().subscribe(data => {
+                this.productList = data;
+            });
+        }
 
         this.alerts.push(
             {
@@ -80,41 +88,31 @@ export class DashboardComponent implements OnInit {
                 voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
             }
         );
-}
+    }
 
-
-
+    ngOnInit() {
+        this._productService.getallProducts().subscribe(data => {
+            console.log(data);
+        });
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
         this.alerts.splice(index, 1);
     }
 
-    ngOnInit() {
-        if (localStorage.getItem('isSeller') === '1') {
-            this.isASeller = true;
-
-            this._productService.getallProductsForward().subscribe(data => {
-                this.productList = data;
-            });
-        } else {
-            this._productService.getallProductsForward().subscribe(data => {
-                this.productList = data;
-            });
-        }
-    }
-
-
 
     gotoDetails(item) {
         this.selectedItem = item;
         this.onCatalog = false;
         this.onDetails = true;
-        location.replace('/catalog');
-
     }
 
-
+    gotoUpdate(item) {
+        this.selectedItem = item;
+        this.onCatalog = false;
+        this.onUpdate = true;
+    }
 
     goBack() {
         this.onDetails = false;
@@ -141,23 +139,6 @@ export class DashboardComponent implements OnInit {
         this.goBack();
     }
 
-    updateProduct() {
-
-        if (this.imageToUpload !== undefined) {
-            this.selectedItem.picture = this.imageToUpload.name;
-
-            const formData = new FormData();
-            formData.append(this.imageToUpload.name, this.imageToUpload);
-
-            this._productService.saveImage(formData).subscribe(data => {
-                this.imageToUpload = undefined;
-            });
-        }
-
-        this._productService.updateProduct(this.selectedItem).subscribe(data => {
-            alert('update done');
-        });
-    }
 
     OnImagePicked($event) {
         const file = (event.target as HTMLInputElement).files[0];

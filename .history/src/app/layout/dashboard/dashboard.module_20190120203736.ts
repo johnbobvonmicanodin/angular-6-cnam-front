@@ -11,19 +11,13 @@ import {
 } from './components';
 import { StatModule } from '../../shared';
 
-
-import { ChartsModule as Ng2Charts } from 'ng2-charts';
-import { FormsModule } from '@angular/forms';
-
 @NgModule({
     imports: [
         CommonModule,
         NgbCarouselModule,
         NgbAlertModule,
         DashboardRoutingModule,
-        StatModule,
-        Ng2Charts,
-        FormsModule
+        StatModule
     ],
     declarations: [
         DashboardComponent,

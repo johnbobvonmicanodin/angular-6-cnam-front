@@ -94,7 +94,7 @@ export class DashboardComponent implements OnInit {
         if (localStorage.getItem('isSeller') === '1') {
             this.isASeller = true;
 
-            this._productService.getallProductsForward().subscribe(data => {
+            this._productService.getallProducts().subscribe(data => {
                 this.productList = data;
             });
         } else {
@@ -110,11 +110,13 @@ export class DashboardComponent implements OnInit {
         this.selectedItem = item;
         this.onCatalog = false;
         this.onDetails = true;
-        location.replace('/catalog');
-
     }
 
-
+    gotoUpdate(item) {
+        this.selectedItem = item;
+        this.onCatalog = false;
+        this.onUpdate = true;
+    }
 
     goBack() {
         this.onDetails = false;

@@ -1,0 +1,162 @@
+<div [@routerTransition]>
+    <h2 class="text-muted">Dashboard <small>Klaydsoul shop</small></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'Nouveaux commentaires'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'Nouvelle tâche'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'Nouvelles commandes'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'Nouveaux tickets'"></app-stat>
+        </div>
+    </div>
+    <hr />
+
+
+
+        
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Our favourites </h2>
+        </div>
+    </div>
+
+    
+    <div *ngIf="onCatalog" class="row">
+        
+        <div *ngFor="let item of productList; let i = index" class="col col-sm-4">
+            <div class="card mb-3">
+                <div class="card-header">        
+                    <p class="text-left"><b>{{item.name}}</b> &nbsp;&nbsp;Price (Exclusive of Tax) : {{item.priceHT}} € </p>
+                </div>
+                <div class="card-body">
+                    <img [src]="urlServer+item.picture" width="100%" height="250">
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >See details</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-info btn-sm" *ngIf="isASeller" (click)="gotoUpdate(item)" >Update</button>
+                </div>        
+            </div>     
+        </div>
+    </div>
+    
+    <div *ngIf="onDetails">
+                <div class="row">
+                        <div class="col-lg-6">
+                            <h4>Article Title : {{selectedItem.name}}</h4>
+                            <br>
+                            <label>Description :</label>
+                            <p>{{selectedItem.description}}</p>                                      
+                            <label>Price WT : {{selectedItem.priceHT}} €</label>
+                            <br>
+                            <label>Taxes : {{selectedItem.tva}}%</label>
+                            <br>
+                            <br>
+                            <label>Stockage place : {{selectedItem.stock_place}}</label>
+                            <br>
+                            <label>Estimated delivery time : {{selectedItem.delivery_time}} day(s)</label>
+                            <br>
+                            <br>
+                            <label>Number to buy :</label>
+                            <input type="number" name="number" [(ngModel)]="numberToBuy" class="form-control">
+                            <br>
+                            <button class="btn btn-primary" (click)="addToBasket()" >Add to Basket</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-danger" (click)="goBack()" >Back</button>                     
+                        </div>
+                        <div class="col-lg-6">
+                            <img [src]="urlServer+selectedItem.picture" width="100%" height="250">
+                        </div>
+                
+                       
+                        </div>
+        </div>
+    
+        <div *ngIf="onUpdate">
+            <div class="row">
+                    <div class="col-lg-6">
+    
+                            <label>Title</label>
+                            <input type="text" name="title" [(ngModel)]="selectedItem.name" maxlength="40" class="form-control">
+                            <br>
+                            <label>Description</label>
+                            <textarea class="form-control" [(ngModel)]="selectedItem.description" maxlength="400" name="descript" rows="4"></textarea>
+                            <br>
+                            <label>Estimated delivery time in open days</label>
+                            <input type="number" [(ngModel)]="selectedItem.delivery_time" name="timedelivery" class="form-control">
+                            <br>
+                            <label for="exampleInputFile">Illustration image</label>
+                            <input type="file" (change)="OnImagePicked($event)" class="form-control-file" name="fileInput" id="exampleInputFile">
+                            <br>
+                            <button class="btn btn-primary" (click)="updateProduct()">Update</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                           
+                                
+                
+                        
+                        </div>
+                        <div class="col-lg-6">
+                                <label>Price HT</label>
+                                <input type="number" name="price" [(ngModel)]="selectedItem.priceHT" class="form-control">
+                                <br>
+                                <label>TVA percentage</label>
+                                <input type="number" name="tva" [(ngModel)]="selectedItem.tva" class="form-control">
+                                <br>
+                                <label>Stockage Place</label>
+                                <input type="text" name="place" [(ngModel)]="selectedItem.stock_place" maxlength="40" class="form-control">
+                        </div>
+            </div>  
+    
+            <br>
+            <br>
+    
+            <div class="row">
+                    <div class="col-lg-6">
+                        <label>Set the product Active/Inactive : </label>                 
+                        <select [(ngModel)]="selectedItem.up" class="form-control">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                        </select>
+                        <br>
+                        <button class="btn btn-primary" (click)="setActive()">Update active</button>
+                        <div *ngIf="isUp"><label>Update done !</label></div>
+                    </div>
+                    <div class="col-lg-6">
+                            <label>Set the product Forward/Backward : </label>
+                            <select [(ngModel)]="selectedItem.forward" class="form-control">
+                                    <option value="1">Forward</option>
+                                    <option value="0">Back</option>
+                            </select>
+                            <br>
+                            <button class="btn btn-primary" (click)="setForward()">Update forward</button>
+                            <div *ngIf="isForward"><label>Update done !</label></div>
+    
+                    </div>
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-danger" (click)="goBack()" >Back</button> 
+        </div>
+    
+
+</div>

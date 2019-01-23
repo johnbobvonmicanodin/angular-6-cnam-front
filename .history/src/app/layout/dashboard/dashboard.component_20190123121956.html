@@ -38,6 +38,7 @@
                 <div class="card-footer">
                     <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >See details</button>
                     &nbsp;&nbsp;
+                    <button class="btn btn-info btn-sm" *ngIf="isASeller" (click)="gotoUpdate(item)" >Update</button>
                 </div>        
             </div>     
         </div>
@@ -72,8 +73,8 @@
                         </div>
                 
                        
-                </div>
-    </div>
+                        </div>
+        </div>
 
     
 

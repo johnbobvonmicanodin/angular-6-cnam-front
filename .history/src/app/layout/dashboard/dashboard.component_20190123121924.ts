@@ -114,7 +114,11 @@ export class DashboardComponent implements OnInit {
 
     }
 
-
+    gotoUpdate(item) {
+        this.selectedItem = item;
+        this.onCatalog = false;
+        this.onUpdate = true;
+    }
 
     goBack() {
         this.onDetails = false;

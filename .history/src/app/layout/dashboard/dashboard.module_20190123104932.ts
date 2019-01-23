@@ -22,7 +22,6 @@ import { FormsModule } from '@angular/forms';
         NgbAlertModule,
         DashboardRoutingModule,
         StatModule,
-        Ng2Charts,
         FormsModule
     ],
     declarations: [
