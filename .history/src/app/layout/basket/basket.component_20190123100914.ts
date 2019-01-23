@@ -23,12 +23,19 @@ export class BasketComponent implements OnInit {
     pastPurchases: any;
 
     isOnPayment = false;
-    canBuy = false;
 
     ngOnInit() {
         this.currentUser.Id = localStorage.getItem('id');
 
-        this.updateLists();
+        this.basketService.getallBasketsforUser(this.currentUser).subscribe(data => {
+            this.basketList = data;
+            this.calculTotalPrice();
+        });
+
+        this.movementService.getallforOneUser(this.currentUser).subscribe(data => {
+            this.pastPurchases = data;
+        });
+
     }
 
     deleteArticle(item: any) {
@@ -47,8 +54,6 @@ export class BasketComponent implements OnInit {
 
         this.basketList.forEach(item => {
             this.totalPrice += ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
-
-            this.canBuy = true;
         });
     }
 
@@ -60,18 +65,18 @@ export class BasketComponent implements OnInit {
             m.MovementOrigin = this.currentUser;
             m.ProductMoved = item.product_choose;
             m.Number = item.number;
-            m.Statut = 'Waiting';
+            m.Statut = 'Shipping';
             m.Type_of_movement = 'purchase';
             m.Value = ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
             m.Date = new Date();
 
-            this.movementService.addMovement(m).subscribe(data => {
-                console.log(data);
-            });
+            this.movementService.addMovement(m);
         });
 
         this.basketService.deleteAllBasketForUser(this.currentUser).subscribe(data => {
-           current.updateLists();
+            current.basketService.getallBasketsforUser(current.currentUser).subscribe(data => {
+                current.basketList = data;
+            });
         });
 
         this.goBack();
@@ -83,17 +88,5 @@ export class BasketComponent implements OnInit {
 
     goBack() {
         this.isOnPayment = false;
-    }
-
-    updateLists() {
-        this.basketService.getallBasketsforUser(this.currentUser).subscribe(data => {
-            this.basketList = data;
-            this.calculTotalPrice();
-        });
-
-        this.movementService.getallforOneUser(this.currentUser).subscribe(data => {
-            // console.log(data);
-            this.pastPurchases = data;
-        });
     }
 }

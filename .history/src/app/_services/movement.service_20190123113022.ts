@@ -58,7 +58,7 @@ export class MovementService {
 
   public getallPurchase() {
 
-    return this.http.get(`${this._apiURL}/getallpurchase`)
+    return this.http.get(`${this._apiURL}/getallforuser`)
     .pipe(
       map((data) => {
         return data.json();

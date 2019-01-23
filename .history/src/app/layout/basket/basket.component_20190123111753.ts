@@ -60,7 +60,7 @@ export class BasketComponent implements OnInit {
             m.MovementOrigin = this.currentUser;
             m.ProductMoved = item.product_choose;
             m.Number = item.number;
-            m.Statut = 'Waiting';
+            m.Statut = 'Shipping';
             m.Type_of_movement = 'purchase';
             m.Value = ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
             m.Date = new Date();

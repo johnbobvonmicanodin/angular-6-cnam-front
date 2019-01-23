@@ -3,7 +3,6 @@ import { routerTransition } from '../../router.animations';
 import { BasketService } from 'src/app/_services/basket.service';
 import { MovementService } from 'src/app/_services/movement.service';
 import { User } from 'src/app/models/user';
-import { Movement } from 'src/app/models/movement';
 
 @Component({
     selector: 'app-basket',
@@ -23,12 +22,15 @@ export class BasketComponent implements OnInit {
     pastPurchases: any;
 
     isOnPayment = false;
-    canBuy = false;
 
     ngOnInit() {
         this.currentUser.Id = localStorage.getItem('id');
 
-        this.updateLists();
+        this.basketService.getallBasketsforUser(this.currentUser).subscribe(data => {
+            this.basketList = data;
+            this.calculTotalPrice();
+        });
+
     }
 
     deleteArticle(item: any) {
@@ -47,32 +49,10 @@ export class BasketComponent implements OnInit {
 
         this.basketList.forEach(item => {
             this.totalPrice += ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
-
-            this.canBuy = true;
         });
     }
 
     pay() {
-        const current = this;
-
-        this.basketList.forEach(item => {
-            const m = new Movement;
-            m.MovementOrigin = this.currentUser;
-            m.ProductMoved = item.product_choose;
-            m.Number = item.number;
-            m.Statut = 'Waiting';
-            m.Type_of_movement = 'purchase';
-            m.Value = ((item.product_choose.tva * this.indicetwo) + this.indice) * (item.product_choose.priceHT * item.number);
-            m.Date = new Date();
-
-            this.movementService.addMovement(m).subscribe(data => {
-                console.log(data);
-            });
-        });
-
-        this.basketService.deleteAllBasketForUser(this.currentUser).subscribe(data => {
-           current.updateLists();
-        });
 
         this.goBack();
     }
@@ -83,17 +63,5 @@ export class BasketComponent implements OnInit {
 
     goBack() {
         this.isOnPayment = false;
-    }
-
-    updateLists() {
-        this.basketService.getallBasketsforUser(this.currentUser).subscribe(data => {
-            this.basketList = data;
-            this.calculTotalPrice();
-        });
-
-        this.movementService.getallforOneUser(this.currentUser).subscribe(data => {
-            // console.log(data);
-            this.pastPurchases = data;
-        });
     }
 }
