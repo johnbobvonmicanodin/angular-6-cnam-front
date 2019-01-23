@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
 
     constructor(
         private translate: TranslateService,
-        public authService: AuthService,
+        public auth: AuthService,
         private userService: UserService
         ) {
             this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.authState.subscribe((user) => {
+        this.auth.authState.subscribe((user) => {
              this.user = user;
         });
     }
@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signInWithFB() {
+  signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
 
 
@@ -99,6 +99,7 @@ export class SignupComponent implements OnInit {
             localStorage.setItem('firstname', data.firstName);
             localStorage.setItem('name', data.name);
             localStorage.setItem('email', data.email);
+            localStorage.setItem('isSeller', data.isSeller);
             localStorage.setItem('id', data.id);
             location.replace('/dashboard');
     });

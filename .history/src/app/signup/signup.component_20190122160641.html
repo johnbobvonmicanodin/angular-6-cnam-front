@@ -29,29 +29,28 @@
                 <a class="btn btn-primary" (click)="signIn()">{{ 'Register' | translate }}</a>&nbsp;
                 <a class="btn btn-secondary" [routerLink]="['/login']">{{ 'Log in' | translate }}</a>
             </form>
-        </div>
-	</div>	
 
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <h1> Connect with a Facebook account </h1>
+
+                <br/>
+
+                <h6 class="card-header">
+                    Connect with a Facebook or Twitter account
+                </h6>
                 <div class="card-block">
-                    <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
-                    <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
-                    <button class="btn btn-social-icon btn-linkedin mx-1" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>
-
+                        <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+                        <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
+                        <button class="btn btn-social-icon btn-linkedin mx-1" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>
                 </div>
-        </div>
+                  
+                 
+
+                    <!--<div class="card-block"></div>
+                    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ user.name }}</h4>
+                        <p class="card-text">{{ user.email }}</p>
+                  </div>-->
+                </div>
+                </div>                
     </div>
-    
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <div class="card-block">
-                <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}" style="width: 100px; height: 100px">
-                <h4>{{ user.name }}</h4>
-                <p>{{ user.email }}</p>
-            </div>
-        </div>
-    </div>
-</div>
 

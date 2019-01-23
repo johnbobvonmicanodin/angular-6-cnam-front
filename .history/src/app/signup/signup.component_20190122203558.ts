@@ -5,9 +5,7 @@ import { NgModel } from '@angular/forms';
 import { User } from '../models/user';
 import { UserService } from '../_services/user.service';
 
-import { AuthService } from 'angularx-social-login';
-import { SocialUser } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedinLoginProvider, SocialUser } from 'angular-6-social-login';
 
 @Component({
     selector: 'app-signup',
@@ -31,10 +29,12 @@ export class SignupComponent implements OnInit {
 
     userBase = new User();
 
+
     constructor(
         private translate: TranslateService,
-        public authService: AuthService,
-        private userService: UserService
+        private userService: UserService,
+        private authService: AuthService,
+        private socialAuthService: AuthService
         ) {
             this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
             this.translate.setDefaultLang('en');
@@ -42,11 +42,35 @@ export class SignupComponent implements OnInit {
             this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
     }
 
-    ngOnInit() {
-        this.authService.authState.subscribe((user) => {
-             this.user = user;
-        });
-    }
+
+
+    public socialSignIn(socialPlatform: string) {
+        let socialPlatformProvider;
+        if (socialPlatform === 'facebook') {
+          socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+        } else if (socialPlatform === 'google') {
+          socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+        } else if (socialPlatform === 'linkedin') {
+          socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
+        }
+
+        this.socialAuthService.signIn(socialPlatformProvider).then(
+          (userData) => {
+            console.log(socialPlatform + ' sign in data : ' , userData);
+            // Now sign-in with userData
+            // ...
+
+          }
+        );
+      }
+
+      ngOnInit() {
+          this.authService.authState.subscribe((user) => {
+              this.user = user;
+              this.loggedIn = (user != null);
+          });
+        }
+
 
     signIn() {
 
@@ -84,32 +108,4 @@ export class SignupComponent implements OnInit {
             setTimeout(() => current.errorField = false, 2000);
         }
     }
-
-    signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithFB() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-
-
-    this.userService.addUser(this.userBase).subscribe(data => {
-            localStorage.setItem('isLoggedin', 'true');
-            localStorage.setItem('currentUser', data);
-            localStorage.setItem('firstname', data.firstName);
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('email', data.email);
-            localStorage.setItem('id', data.id);
-            location.replace('/dashboard');
-    });
-}
-
-  signInWithLinkedIn(): void {
-    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
-  }
-
-  signOut(): void {
-    this.authService.signOut();
-  }
-
 }
