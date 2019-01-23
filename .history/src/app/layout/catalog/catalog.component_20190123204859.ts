@@ -37,7 +37,7 @@ export class CatalogComponent implements OnInit {
     isUp = false;
     isForward = false;
 
-    inventoryOfSelectedItem: any;
+    inventoryOfSelectedItem: Inventory = new Inventory();
     stockToAdd = 0;
 
     constructor(private productService: ProductService,
@@ -164,7 +164,7 @@ export class CatalogComponent implements OnInit {
                 this.inventoryOfSelectedItem.Stock = this.stockToAdd;
 
                 this.inventoryService.addInventory(this.inventoryOfSelectedItem).subscribe(data => {
-                    this.inventoryOfSelectedItem = data;
+                    console.log(data);
                 });
             } else {
                 const movement = new Movement();

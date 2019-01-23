@@ -76,10 +76,17 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._productService.getallProductsForward().subscribe(data => {
-            this.productList = data;
-        });
+        if (localStorage.getItem('isSeller') === '1') {
+            this.isASeller = true;
 
+            this._productService.getallProductsForward().subscribe(data => {
+                this.productList = data;
+            });
+        } else {
+            this._productService.getallProductsForward().subscribe(data => {
+                this.productList = data;
+            });
+        }
     }
 
     gotoDetails() {

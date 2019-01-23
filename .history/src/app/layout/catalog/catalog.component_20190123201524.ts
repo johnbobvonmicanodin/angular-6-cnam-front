@@ -8,7 +8,6 @@ import { User } from 'src/app/models/user';
 import { MovementService } from 'src/app/_services/movement.service';
 import { InventoryService } from 'src/app/_services/inventory.service';
 import { Inventory } from 'src/app/models/inventory';
-import { Movement } from 'src/app/models/movement';
 
 @Component({
     selector: 'app-catalog',
@@ -37,7 +36,7 @@ export class CatalogComponent implements OnInit {
     isUp = false;
     isForward = false;
 
-    inventoryOfSelectedItem: any;
+    inventoryOfSelectedItem: Inventory = new Inventory();
     stockToAdd = 0;
 
     constructor(private productService: ProductService,
@@ -68,25 +67,24 @@ export class CatalogComponent implements OnInit {
 
         this.inventoryService.getLast(this.selectedItem).subscribe(data => {
             this.inventoryOfSelectedItem = data;
-            this.onCatalog = false;
-            this.onDetails = true;
         });
+
+        this.onCatalog = false;
+        this.onDetails = true;
     }
 
     gotoUpdate(item) {
         this.selectedItem = item;
 
         this.inventoryService.getLast(this.selectedItem).subscribe(data => {
-            console.log(data);
             this.inventoryOfSelectedItem = data;
-            this.onCatalog = false;
-            this.onUpdate = true;
         });
+
+        this.onCatalog = false;
+        this.onUpdate = true;
     }
 
     goBack() {
-        this.inventoryOfSelectedItem = null;
-        this.stockToAdd = 0;
         this.onDetails = false;
         this.onUpdate = false;
         this.onCatalog = true;
@@ -155,36 +153,9 @@ export class CatalogComponent implements OnInit {
 
     addStock() {
 
-        if (this.stockToAdd > 0) {
-
-            if (this.inventoryOfSelectedItem == null) {
-                this.inventoryOfSelectedItem = new Inventory();
-                this.inventoryOfSelectedItem.Date = new Date();
-                this.inventoryOfSelectedItem.ProductStock = this.selectedItem;
-                this.inventoryOfSelectedItem.Stock = this.stockToAdd;
-
-                this.inventoryService.addInventory(this.inventoryOfSelectedItem).subscribe(data => {
-                    this.inventoryOfSelectedItem = data;
-                });
-            } else {
-                const movement = new Movement();
-                movement.Date = new Date();
-                movement.MovementOrigin = this.currentUser;
-                movement.Type_of_movement = 'stock';
-                movement.ProductMoved = this.selectedItem;
-                movement.Number = this.stockToAdd;
-                movement.Value = this.selectedItem.priceHT * this.stockToAdd;
-
-                this.movementService.addMovement(movement).subscribe(data => {
-                    console.log(data);
-                });
-            }
-        }
     }
 
     refreshInventory() {
-        /*this.inventoryService.refreshInventory(this.selectedItem).subscribe(data => {
-            this.inventoryOfSelectedItem = data;
-        });*/
+
     }
 }

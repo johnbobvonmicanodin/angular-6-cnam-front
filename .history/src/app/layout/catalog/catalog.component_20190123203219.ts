@@ -37,7 +37,7 @@ export class CatalogComponent implements OnInit {
     isUp = false;
     isForward = false;
 
-    inventoryOfSelectedItem: any;
+    inventoryOfSelectedItem: Inventory = new Inventory();
     stockToAdd = 0;
 
     constructor(private productService: ProductService,
@@ -68,20 +68,21 @@ export class CatalogComponent implements OnInit {
 
         this.inventoryService.getLast(this.selectedItem).subscribe(data => {
             this.inventoryOfSelectedItem = data;
-            this.onCatalog = false;
-            this.onDetails = true;
         });
+
+        this.onCatalog = false;
+        this.onDetails = true;
     }
 
     gotoUpdate(item) {
         this.selectedItem = item;
 
         this.inventoryService.getLast(this.selectedItem).subscribe(data => {
-            console.log(data);
             this.inventoryOfSelectedItem = data;
-            this.onCatalog = false;
-            this.onUpdate = true;
         });
+
+        this.onCatalog = false;
+        this.onUpdate = true;
     }
 
     goBack() {
@@ -163,9 +164,7 @@ export class CatalogComponent implements OnInit {
                 this.inventoryOfSelectedItem.ProductStock = this.selectedItem;
                 this.inventoryOfSelectedItem.Stock = this.stockToAdd;
 
-                this.inventoryService.addInventory(this.inventoryOfSelectedItem).subscribe(data => {
-                    this.inventoryOfSelectedItem = data;
-                });
+                this.inventoryService.addInventory(this.inventoryOfSelectedItem);
             } else {
                 const movement = new Movement();
                 movement.Date = new Date();
@@ -175,9 +174,7 @@ export class CatalogComponent implements OnInit {
                 movement.Number = this.stockToAdd;
                 movement.Value = this.selectedItem.priceHT * this.stockToAdd;
 
-                this.movementService.addMovement(movement).subscribe(data => {
-                    console.log(data);
-                });
+                this.movementService.addMovement(movement);
             }
         }
     }

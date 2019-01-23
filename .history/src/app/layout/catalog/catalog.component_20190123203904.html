@@ -117,16 +117,15 @@
         <br>
         <div class="row">
                 <div class="col-lg-6">
-                    <label>Stok from inventory : {{inventoryOfSelectedItem.stock}} </label>  
+                    <label>Stok from inventory : {{inventoryOfSelectedItem.Stock}} </label>  
                     <br>  
-                    <label>Date of last inventory :  {{inventoryOfSelectedItem.date | date:'dd/MM/yyyy à HH:mm:ss'}}</label>
+                    <label>Date of last inventory :  {{inventoryOfSelectedItem.Date | date:'dd/MM/yyyy à HH:mm:ss'}}</label>
                     <br>
                     <label>Add stock : </label>
                     <br>
                     <input type="number" name="stock" [(ngModel)]="stockToAdd" class="form-control">
                     <br>
                     <button class="btn btn-primary" (click)="addStock()">Validate</button>
-                    <br>
                     <br>
                     <label>Make a new Inventory of current stock :</label>
                     &nbsp;&nbsp;<button class="btn btn-primary" (click)="refreshInventory()">Refresh Inventory</button>

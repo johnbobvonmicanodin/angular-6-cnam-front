@@ -37,7 +37,7 @@ export class CatalogComponent implements OnInit {
     isUp = false;
     isForward = false;
 
-    inventoryOfSelectedItem: any;
+    inventoryOfSelectedItem: Inventory = new Inventory();
     stockToAdd = 0;
 
     constructor(private productService: ProductService,
@@ -68,20 +68,21 @@ export class CatalogComponent implements OnInit {
 
         this.inventoryService.getLast(this.selectedItem).subscribe(data => {
             this.inventoryOfSelectedItem = data;
-            this.onCatalog = false;
-            this.onDetails = true;
         });
+
+        this.onCatalog = false;
+        this.onDetails = true;
     }
 
     gotoUpdate(item) {
         this.selectedItem = item;
 
         this.inventoryService.getLast(this.selectedItem).subscribe(data => {
-            console.log(data);
             this.inventoryOfSelectedItem = data;
-            this.onCatalog = false;
-            this.onUpdate = true;
         });
+
+        this.onCatalog = false;
+        this.onUpdate = true;
     }
 
     goBack() {
@@ -164,7 +165,7 @@ export class CatalogComponent implements OnInit {
                 this.inventoryOfSelectedItem.Stock = this.stockToAdd;
 
                 this.inventoryService.addInventory(this.inventoryOfSelectedItem).subscribe(data => {
-                    this.inventoryOfSelectedItem = data;
+                    console.log(data);
                 });
             } else {
                 const movement = new Movement();

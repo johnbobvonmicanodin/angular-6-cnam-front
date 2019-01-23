@@ -164,7 +164,7 @@ export class CatalogComponent implements OnInit {
                 this.inventoryOfSelectedItem.Stock = this.stockToAdd;
 
                 this.inventoryService.addInventory(this.inventoryOfSelectedItem).subscribe(data => {
-                    this.inventoryOfSelectedItem = data;
+                    console.log(data);
                 });
             } else {
                 const movement = new Movement();

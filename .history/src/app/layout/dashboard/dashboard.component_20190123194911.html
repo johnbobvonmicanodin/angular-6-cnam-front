@@ -38,7 +38,7 @@
                     <img [src]="urlServer+item.picture" width="100%" height="250">
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-info btn-sm"  [routerLink]="['/catalog']" [routerLinkActive]="['router-link-active']" >See details</button>
+                    <button class="btn btn-info btn-sm" (click)="gotoDetails()" >See details</button>
                     &nbsp;&nbsp;
                 </div>        
             </div>     

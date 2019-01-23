@@ -18,11 +18,26 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
+    imagesPath = 'https://localhost:44380/images/';
+    imageTest = 'piano.jpg';
+
     productList = [];
     iterator = 0;
     urlServer = 'https://localhost:44380/images/';
 
+    numberToBuy = 1;
+
     selectedItem: any;
+    imageToUpload: any;
+
+    onCatalog = true;
+    onDetails = false;
+    onUpdate = false;
+    isASeller = false;
+    isLog = false;
+    isUp = false;
+    isForward = false;
+
 
     constructor(private _productService: ProductService,  private basketService: BasketService) {
         this.sliders.push(
@@ -76,10 +91,17 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._productService.getallProductsForward().subscribe(data => {
-            this.productList = data;
-        });
+        if (localStorage.getItem('isSeller') === '1') {
+            this.isASeller = true;
 
+            this._productService.getallProductsForward().subscribe(data => {
+                this.productList = data;
+            });
+        } else {
+            this._productService.getallProductsForward().subscribe(data => {
+                this.productList = data;
+            });
+        }
     }
 
     gotoDetails() {

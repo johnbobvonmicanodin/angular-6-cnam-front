@@ -18,11 +18,26 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
+    imagesPath = 'https://localhost:44380/images/';
+    imageTest = 'piano.jpg';
+
     productList = [];
     iterator = 0;
     urlServer = 'https://localhost:44380/images/';
 
+    numberToBuy = 1;
+
     selectedItem: any;
+    imageToUpload: any;
+
+    onCatalog = true;
+    onDetails = false;
+    onUpdate = false;
+    isASeller = false;
+    isLog = false;
+    isUp = false;
+    isForward = false;
+
 
     constructor(private _productService: ProductService,  private basketService: BasketService) {
         this.sliders.push(
@@ -76,14 +91,85 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._productService.getallProductsForward().subscribe(data => {
-            this.productList = data;
-        });
+        if (localStorage.getItem('isSeller') === '1') {
+            this.isASeller = true;
 
+            this._productService.getallProductsForward().subscribe(data => {
+                this.productList = data;
+            });
+        } else {
+            this._productService.getallProductsForward().subscribe(data => {
+                this.productList = data;
+            });
+        }
     }
+
+
 
     gotoDetails() {
         location.replace('/catalog');
+    }
+
+
+    addToBasket() {
+
+        const user = new User();
+        user.Id = localStorage.getItem('id');
+
+        const basketToAdd = new Basket();
+        basketToAdd.Product_choose = this.selectedItem;
+        basketToAdd.BasketOwner = user;
+        basketToAdd.Number = this.numberToBuy;
+
+        this.basketService.addBasket(basketToAdd).subscribe(data => {
+            // let it go
+        });
+
+        this.numberToBuy = 1;
+
+        this.goBack();
+    }
+
+    updateProduct() {
+
+        if (this.imageToUpload !== undefined) {
+            this.selectedItem.picture = this.imageToUpload.name;
+
+            const formData = new FormData();
+            formData.append(this.imageToUpload.name, this.imageToUpload);
+
+            this._productService.saveImage(formData).subscribe(data => {
+                this.imageToUpload = undefined;
+            });
+        }
+
+        this._productService.updateProduct(this.selectedItem).subscribe(data => {
+            alert('update done');
+        });
+    }
+
+    OnImagePicked($event) {
+        const file = (event.target as HTMLInputElement).files[0];
+
+        if (file != null) {
+            this.imageToUpload = file;
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+         }
+    }
+
+    setActive() {
+        this._productService.setProductUp(this.selectedItem).subscribe(data => {
+            this.isUp = true;
+            setTimeout(() => this.isUp = false, 2000);
+        });
+    }
+
+    setForward() {
+        this._productService.setProductForward(this.selectedItem).subscribe(data => {
+            this.isForward = true;
+            setTimeout(() => this.isForward = false, 2000);
+        });
     }
 
 }
