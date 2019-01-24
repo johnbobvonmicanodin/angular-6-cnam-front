@@ -190,16 +190,8 @@ export class CatalogComponent implements OnInit {
 
     deleteProduct() {
 
-        const current = this;
-
-        if (confirm('Cest vraiment pas une bonne idée, tu devrais plutôt désactiver le produit')) {
-
-            this.productService.deleteProduct(this.selectedItem).subscribe(data => {
-                current.productService.getallProducts().subscribe(rep => {
-                    current.productList = rep;
-                    current.goBack();
-                });
-            });
-        }
+        this.productService.deleteProduct(this.selectedItem).subscribe(data => {
+            // c'est vraiment pas safe;
+        });
     }
 }
